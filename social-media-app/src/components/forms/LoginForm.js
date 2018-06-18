@@ -31,6 +31,7 @@ validate = data => {
   const errors = {};
   if(!Validator.isEmail(data.email)) errors.email = "Invalid email address";
   if(!data.password) errors.password = "Type in a valid password";
+  if(data.password.length < 8 && data.password.length > 0) errors.password = "Your password needs to contain at least 8 characters";
   return errors;
 };
 
