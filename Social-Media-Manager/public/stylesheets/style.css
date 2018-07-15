@@ -1,0 +1,76 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  color: #ECF0EA;
+  height: 100%
+}
+
+.auth{
+  background: #F26F63 no-repeat;
+  position: absolute;
+  width: 500px;
+  top: 25%;
+  left: 35%;
+}
+
+a , a:visited, a:hover{
+  text-decoration: none;
+}
+
+.links{
+  color: #3C4A57;
+}
+
+.btn{
+  border: #333F4A;
+  background-color: #333F4A;
+  color: white;
+  padding: 15px;
+  border-radius: 2.5px
+}
+
+h1{
+  padding: 30px;
+  font-size: 8em;
+}
+
+nav a{
+  margin: 0 5px;
+}
+.btn:hover,.btn:visited,.btn:active{
+  border: #4F6273;
+  background-color: #4F6273;
+  color: white;
+}
+
+.user-field{
+  border-radius: 2.5px 2.5px 0 0;
+  border: 0px solid #ccc;
+}
+
+.password-field{
+  border-radius: 0 0 2.5px 2.5px;
+}
+
+.landing{
+  text-align: center;
+  background: #F26F63 no-repeat;
+}
+.masthead{
+  padding-bottom: 200px;
+}
+
+.masthead-brand{
+  float: left;
+  margin: 0;
+}
+
+footer{
+  position: absolute;
+  bottom: 0px;
+  left: 45%;
+}
