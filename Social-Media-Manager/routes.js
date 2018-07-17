@@ -1,4 +1,6 @@
 // routes.js
+var nodeMailer = require("nodemailer");
+
 module.exports = function(app, passport) {
 
     // =====================================
@@ -10,7 +12,7 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/profile', // redirect to the secure profile section
+        successRedirect : '/home', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -58,12 +60,50 @@ module.exports = function(app, passport) {
         });
     });
 
+    app.get('/home', isLoggedIn, function(req, res) {
+        res.render('home.ejs', {
+            user : req.user // get the user out of session and pass to template
+        });
+    });
+
+    app.get('/email', isLoggedIn,function(req, res) {
+        res.render('emailsender.ejs'); // load the index.ejs file
+    });
+
     // =====================================
     // LOGOUT ==============================
     // =====================================
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/');
+    });
+
+    app.post('/send-email', isLoggedIn, function (req, res) {
+          let transporter = nodeMailer.createTransport({
+              host: 'smtp.gmail.com',
+              port: 587,
+              secure: false,
+              requireTLS: true,
+              auth: {
+                  user: 'nevillekitala@gmail.com',
+                  pass: 'maryland6987'
+              }
+          });
+          let mailOptions = {
+              from: 'donotreply@gmail.com', // sender address
+              to: req.body.to, // list of receivers
+              subject: req.body.subject, // Subject line
+              text: req.body.body, // plain text body
+              html: '<b>NodeJS Email Tutorial</b>' // html body
+          };
+
+          transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+              return console.log(error);
+          }
+          console.log('Message %s sent: %s', info.messageId, info.response);
+              res.render('index');
+          });
     });
 };
 

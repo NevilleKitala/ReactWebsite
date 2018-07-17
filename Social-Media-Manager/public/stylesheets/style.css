@@ -69,8 +69,75 @@ nav a{
   margin: 0;
 }
 
+.masthead-user{
+  float: right;
+  display: block;
+}
+
 footer{
   position: absolute;
   bottom: 0px;
   left: 45%;
+}
+
+.sidenav {
+    height: 85%;
+    position: fixed;
+    width: 120px;
+    z-index: 1;
+    top: 15%;
+    right: -95px;
+    background-color: transparent;
+    overflow-x: hidden;
+    padding-top: 20px;
+    color: transparent;
+    -webkit-transition: color 1s, right 1s;
+}
+
+.sidenav:hover{
+    color: white;
+    right: 0;
+}
+
+.sidenav p {
+    position: absolute;
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 4em;
+    display: block;
+
+}
+
+.dropdown-menu {
+    color: white;
+    background: transparent;
+    border: 1px solid white;
+    border-radius: .1rem;
+    margin: .5rem 0 0;
+}
+
+.sidenav p:hover {
+    color: whitesmoke;
+    font-size: 4.5em;
+    -webkit-transition: color 0.5s, font-size 0.3s;
+}
+
+.sidebar-1 {
+    top: 0;
+}
+
+.sidebar-2 {
+    top: 18%;
+}
+
+.sidebar-3 {
+    top: 36%;
+}
+
+.sidebar-4 {
+    top: 54%;
+}
+
+.sidebar-5 {
+    top: 72%;
 }
