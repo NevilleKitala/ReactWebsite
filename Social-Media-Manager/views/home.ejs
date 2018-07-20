@@ -4,67 +4,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.1/css/all.css" integrity="sha384-O8whS3fhG2OnA5Kas0Y9l3cfpmYjapjI0E4theH4iuMD+pLhbf6JI0jIMfYcK3yZ" crossorigin="anonymous">
 <link rel="stylesheet" href="stylesheets/style.css">
 </head>
 
-<body class=" landing">
+<body>
 
-<div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
- <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
-     <nav class="my-2 my-md-0 mr-md-3">
-       <a class="p-2 text-dark" href="#">Features</a>
-       <a class="p-2 text-dark" href="#">Enterprise</a>
-       <a class="p-2 text-dark" href="#">Support</a>
-       <a class="p-2 text-dark" href="#">Pricing</a>
-         <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle-o"></span> <%= user.local.email %></a>
-           <div class="dropdown-menu text-dark">
-             <a class="p-2 text-light logout links" href="/logout"><span class="fa fa-unlock"></span> Log out</a>
-           </div>
-     </nav>
-</div>
+    <div class="sidenav">
+     <p href="#about" class="sidebar-1 fab fa-facebook-f"></p>
+     <p href="#services" class="sidebar-2 fab fa-instagram"></p>
+     <p href="#clients" class="sidebar-3 fab fa-twitter"></p>
+     <p href="#contact" class="sidebar-4 fab fa-google"></p>
+    </div>
 
 
-<div class="sidenav">
- <p href="#about" class="sidebar-1 fa fa-facebook"></p>
- <p href="#services" class= "sidebar-2 fa fa-instagram"></p>
- <p href="#clients" class= "sidebar-3 fa fa-twitter"></p>
- <p href="#contact" class= "sidebar-4 fa fa-google"></p>
- <p href="#contact" class= "sidebar-5 fa fa-comments" data-toggle="modal" data-target="#exampleModalCenter"></p>
-
-</div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        ...
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title text-dark" id="exampleModalLongTitle">Chat Box</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <section id="chatroom">
+             <section id="feedback">
+             </section>
+            </section>
+          </div>
+          <div class="modal-footer">
+            <input id = "username" value = "<%= user.local.email %>" type="hidden"/>
+            <input id="message" class="chat-box" type="text" />
+            <button id="send_message" class="btn chat-button" type="button">Send</button>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
 
-    <main role="main" class="inner cover">
-      <h1 class="cover-heading">Social Media Management.<br>Convenience.<br>Time.</h1>
+    <main role="main" class="inner cover landing">
+
+      <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+       <h5 class="my-0 mr-md-auto font-weight-normal">Company name</h5>
+           <nav class="my-2 my-md-0 mr-md-3">
+             <a class="p-2 text-dark" href="#">Features</a>
+             <a class="p-2 text-dark" href="#">Enterprise</a>
+             <a class="p-2 text-dark" href="#">Support</a>
+             <a class="p-2 text-dark" href="#">Pricing</a>
+               <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span > <%= user.local.email %></a>
+                 <div class="dropdown-menu text-dark">
+                   <a class="p-2 text-light logout links" href="/logout"><span class="fa fa-unlock"></span> Log out</a>
+                 </div>
+           </nav>
+      </div>
+
+      <h1 class="cover-heading"><span class = "welcome-text">Social Media Management.<br>Convenience.<br>Time.</span></h1>
       <p class="lead">
         <a href="/signup" class="btn btn-default"><span class="fa fa-lock"></span> Get started</a>
       </p>
+
+      <p href="#contact" data-toggle="modal" data-target="#exampleModalCenter" class="chat far fa-comment-alt"></p>
     </main>
 
+    <div class = "content">
+      <p>
+        hey
+      </p>
+    </div>
+
   </div>
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="javascripts/chat.js"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
 </body>
 </html>

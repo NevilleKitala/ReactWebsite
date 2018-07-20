@@ -33,6 +33,8 @@ server.on('listening', onListening);
  * Normalize a port into a number, string, or false.
  */
 
+var io = require("socket.io").listen(server);
+
 function normalizePort(val) {
   var port = parseInt(val, 10);
 
@@ -88,3 +90,11 @@ function onListening() {
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
 }
+
+io.on('connection', (socket) => {
+  console.log('User Connected');
+
+  socket.on('new_message', (data) => {
+    io.sockets.emit('new_message', {message : data.message, username: data.username});
+  })
+})
