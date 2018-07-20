@@ -20,6 +20,10 @@ a , a:visited, a:hover{
   text-decoration: none;
 }
 
+p{
+  margin: 0;
+}
+
 .links{
   color: #3C4A57;
 }
@@ -141,13 +145,17 @@ footer{
     border: 2px solid white;
     padding: 10px;
     position: absolute;
-    bottom: 30px;
+    bottom: 50px;
     left: 10px;
     -webkit-transition: border-radius 0.5s;
 }
 
 .chat:hover {
   border-radius: 50%;
+}
+
+.chat-button{
+  border-radius: 0px;
 }
 
 .modal-body {
@@ -167,6 +175,7 @@ footer{
     width: 100%;
     height: 50px;
     border-radius: 0;
+    border: 1px solid lightgrey;
 }
 
 .message{
@@ -175,19 +184,34 @@ footer{
     padding: 5px;
     color: white;
     border-radius: 5px;
-    margin-bottom: 10px;
 }
-.my-message{
+
+.my-message, .other-message{
+    margin-bottom: 10px;
+    min-height: 35px;
+}
+
+.my-message .message{
     float: right;
     background: #ef5148;
+}
+
+.my-message span{
+    clear:both;
+    float: right;
 }
 
 .modal-body span{
     font-size: 0.5em;
 }
-.other-message{
+.other-message .message{
     float: left;
     background: #b21c65;
+}
+
+.other-message span{
+    clear:both;
+    float: left;
 }
 
 .modal-footer .chat-button{

@@ -14,9 +14,9 @@ $(function(){
   socket.on("new_message", (data) => {
     console.log(data)
     if(data.username === username.val())
-      chatroom.append("<div class ='message'><p class= 'my-message'>" + data.message + "</p> <span>"+ data.username +"</span></div>")
+      chatroom.append("<div class ='my-message'><p class= 'message'>" + data.message + "</p> <span>"+ data.username +"</span></div>")
     else {
-      chatroom.append("<div class ='message'><p class= 'other-message'>" + data.message + "</p> <span>"+ data.username +"</span></div>")
+      chatroom.append("<div class ='other-message'><p class= 'message'>" + data.message + "</p> <span>"+ data.username +"</span></div>")
     }
   })
 });
