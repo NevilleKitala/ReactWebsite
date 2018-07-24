@@ -35,7 +35,12 @@
             </section>
           </div>
           <div class="modal-footer">
-            <input id = "username" value = "<%= user.local.email %>" type="hidden"/>
+            <% if (user.local.email) { %>
+                <input id = "username" value = "<%= user.local.email %>" type="hidden"/>
+            <% } else if (user.facebook.name) { %>
+              <input id = "username" value = "<%= user.facebook.name %>" type="hidden"/>
+               <% } %>
+
             <input id="message" class="chat-box" type="text" />
             <button id="send_message" class="btn chat-button" type="button">Send</button>
           </div>
@@ -52,7 +57,14 @@
              <a class="p-2 text-dark" href="#">Enterprise</a>
              <a class="p-2 text-dark" href="#">Support</a>
              <a class="p-2 text-dark" href="#">Pricing</a>
-               <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span > <%= user.local.email %></a>
+               <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span >
+
+                 <% if (user.local.email) { %>
+                     <%= user.local.email %>
+                 <% } else if (user.facebook.email) { %>
+                   <%= user.facebook.name %>
+                    <% } %>
+               </a>
                  <div class="dropdown-menu text-dark">
                    <a class="p-2 text-light logout links" href="/logout"><span class="fa fa-unlock"></span> Log out</a>
                  </div>
