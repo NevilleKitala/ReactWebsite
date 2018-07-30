@@ -36,9 +36,11 @@
           </div>
           <div class="modal-footer">
             <% if (user.local.email) { %>
-                <input id = "username" value = "<%= user.local.email %>" type="hidden"/>
+                <input id = "username" value = "<%= user.local.name %>" type="hidden"/>
             <% } else if (user.facebook.name) { %>
               <input id = "username" value = "<%= user.facebook.name %>" type="hidden"/>
+            <% } else if (user.twitter.username) { %>
+              <input id = "username" value = "<%= user.twitter.username %>" type="hidden"/>
                <% } %>
 
             <input id="message" class="chat-box" type="text" />
@@ -60,7 +62,7 @@
                <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span >
 
                  <% if (user.local.email) { %>
-                     <%= user.local.email %>
+                     <%= user.local.name %>
                  <% } else if (user.facebook.email) { %>
                    <%= user.facebook.name %>
                     <% } %>

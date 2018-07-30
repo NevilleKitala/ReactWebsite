@@ -120,6 +120,14 @@ module.exports = function(app, passport) {
             successRedirect : '/home',
             failureRedirect : '/signup'
         }));
+
+    app.get('/auth/twitter', passport.authenticate('twitter'));
+
+    app.get('/auth/twitter/callback',
+      passport.authenticate('twitter', {
+        successRedirect : '/home',
+        failureRedirect : '/signup'
+      }));
 };
 
 // route middleware to make sure a user is logged in
