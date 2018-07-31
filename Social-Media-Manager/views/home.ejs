@@ -39,8 +39,8 @@
                 <input id = "username" value = "<%= user.local.name %>" type="hidden"/>
             <% } else if (user.facebook.name) { %>
               <input id = "username" value = "<%= user.facebook.name %>" type="hidden"/>
-            <% } else if (user.twitter.username) { %>
-              <input id = "username" value = "<%= user.twitter.username %>" type="hidden"/>
+            <% } else if (user.google.name) { %>
+              <input id = "username" value = "<%= user.google.name %>" type="hidden"/>
                <% } %>
 
             <input id="message" class="chat-box" type="text" />
@@ -65,6 +65,8 @@
                      <%= user.local.name %>
                  <% } else if (user.facebook.email) { %>
                    <%= user.facebook.name %>
+                 <% } else if (user.google.email) { %>
+                   <%= user.google.name %>
                     <% } %>
                </a>
                  <div class="dropdown-menu text-dark">
