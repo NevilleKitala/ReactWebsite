@@ -23,11 +23,34 @@ module.exports = function(app, passport) {
         failureFlash : true // allow flash messages
     }));
 
+    app.get('/', function(req, res) {
+        res.render('index.ejs'); // load the index.ejs file
+    });
+
+    // process the signup form
+    app.post('/authorisation', passport.authenticate('local-signup', {
+        successRedirect : '/home', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    app.post('/authorisation', passport.authenticate('local-login', {
+        successRedirect : '/home', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    app.get('/authorisation', function(req, res) {
+
+        // render the page and pass in any flash data if it exists
+        res.render('authorisation.ejs', { message: req.flash('loginMessage') });
+    });
+
     // =====================================
     // LOGIN ===============================
     // =====================================
     // show the login form
-    app.get('/login', function(req, res) {
+    app.get('/login', notLoggedIn, function(req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('login.ejs', { message: req.flash('loginMessage') });
@@ -155,4 +178,14 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
+}
+
+function notLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on
+    if (!req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/home');
 }

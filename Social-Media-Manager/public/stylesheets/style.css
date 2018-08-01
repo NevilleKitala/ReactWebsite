@@ -36,6 +36,11 @@ p{
   border-radius: 2.5px
 }
 
+.btn-standard{
+  padding: 15px;
+  border-radius: 2.5px
+}
+
 nav a{
   margin: 0 5px;
 }
