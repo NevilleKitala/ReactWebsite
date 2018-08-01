@@ -27,25 +27,6 @@ module.exports = function(app, passport) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
-    // process the signup form
-    app.post('/authorisation', passport.authenticate('local-signup', {
-        successRedirect : '/home', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-    app.post('/authorisation', passport.authenticate('local-login', {
-        successRedirect : '/home', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
-        failureFlash : true // allow flash messages
-    }));
-
-    app.get('/authorisation', function(req, res) {
-
-        // render the page and pass in any flash data if it exists
-        res.render('authorisation.ejs', { message: req.flash('loginMessage') });
-    });
-
     // =====================================
     // LOGIN ===============================
     // =====================================
