@@ -28,6 +28,18 @@ var userSchema = mongoose.Schema({
         token        : String,
         email        : String,
         name         : String
+    },
+    instagram           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
+    },
+    pinterest           : {
+        id           : String,
+        token        : String,
+        email        : String,
+        name         : String
     }
 
 });

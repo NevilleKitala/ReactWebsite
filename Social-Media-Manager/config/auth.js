@@ -21,6 +21,19 @@ module.exports = {
         'clientID'      : '287345927343-9mbboinsc8skdt7sa1l306f4pti22mq6.apps.googleusercontent.com',
         'clientSecret'  : 'AnDKrfrc49ccGxm_eRZ2Vhrx',
         'callbackURL'   : 'http://localhost:3000/auth/google/callback'
+    },
+
+    'instagramAuth' : {
+        'clientID'      : '15fa9aceeafb402882545c1dd427acf5',
+        'clientSecret'  : ' 56175ac4fb7d4541bd4479f043d51d7b',
+        'callbackURL'   : 'https://localhost:3000/auth/instagram/callback'
+    },
+
+    'pinterestAuth' : {
+        'clientID'      : '4981429134203824452',
+        'clientSecret'  : ' 5c16fe734da1bcf0abf2446e9922b07802e0dc3220b02aa0211e84804eb22473',
+        'callbackURL'   : 'https://localhost:3000/auth/pinterest/callback'
     }
+
 
 };

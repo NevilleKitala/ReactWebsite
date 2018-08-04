@@ -148,6 +148,32 @@ module.exports = function(app, passport) {
        failureRedirect : '/signup'
      }));
 
+   app.get('/auth/instagram', passport.authenticate('instagram', { scope: [
+      'basic',
+      'public_content'
+    ]}));
+
+   // the callback after instagram has authenticated the user
+   app.get('/auth/instagram/callback',
+      passport.authenticate('instagram', { failureRedirect: '/login' }),
+      function(req, res) {
+      res.redirect('/home');
+    });
+
+   app.get('/auth/pinterest', passport.authenticate('pinterest', { scope: [
+      'read_public',
+      'write_public',
+      'read_relationships',
+      'write_relationships'
+    ] }));
+
+   // the callback after instagram has authenticated the user
+   app.get('/auth/pinterest/callback',
+     passport.authenticate('pinterest', {
+       successRedirect : '/home',
+       failureRedirect : '/signup'
+     }));
+
 };
 
 // route middleware to make sure a user is logged in

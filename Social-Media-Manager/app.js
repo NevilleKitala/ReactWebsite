@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var passport = require('passport');
 var nodeMailer = require("nodemailer");
 var flash    = require('connect-flash');
+var helmet    = require('helmet');
 
 var session      = require('express-session');
 
@@ -33,6 +34,7 @@ app.use(session({secret: 'work hard'})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
+app.use(helmet());
 
 require('./routes.js')(app, passport);
 

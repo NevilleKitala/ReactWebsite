@@ -41,6 +41,8 @@
               <input id = "username" value = "<%= user.facebook.name %>" type="hidden"/>
             <% } else if (user.google.name) { %>
               <input id = "username" value = "<%= user.google.name %>" type="hidden"/>
+            <% } else if (user.instagram.name) { %>
+              <input id = "username" value = "<%= user.instagram.name %>" type="hidden"/>
                <% } %>
 
             <input id="message" class="chat-box" type="text" />
@@ -67,6 +69,8 @@
                    <%= user.facebook.name %>
                  <% } else if (user.google.email) { %>
                    <%= user.google.name %>
+                 <% } else if (user.instagram.email) { %>
+                   <%= user.instagram.name %>
                     <% } %>
                </a>
                  <div class="dropdown-menu text-dark">
