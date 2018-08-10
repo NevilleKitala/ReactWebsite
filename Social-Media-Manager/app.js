@@ -36,7 +36,8 @@ app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
 app.use(helmet());
 
-require('./routes.js')(app, passport);
+require('./routes/routes.js')(app, passport);
+require('./routes/facebook.js')(app, passport);
 
 /*
 // catch 404 and forward to error handler

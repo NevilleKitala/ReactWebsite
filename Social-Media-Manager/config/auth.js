@@ -14,7 +14,7 @@ module.exports = {
     'twitterAuth' : {
         'consumerKey'       : 'Ch4HIvt0ld3WzeyTheD7iTq5H',
         'consumerSecret'    : '5Ff5kq9DuA3PR3aUjQOokLAy9b5ZRnyIgdi6xfX2ShbHjiBLjx',
-        'callbackURL'       : 'https://bit.ly/2LUWRkW'
+        'callbackURL'       : 'https://127.0.0.1:3000/auth/twitter/callback'
     },
 
     'googleAuth' : {
@@ -25,13 +25,13 @@ module.exports = {
 
     'instagramAuth' : {
         'clientID'      : '15fa9aceeafb402882545c1dd427acf5',
-        'clientSecret'  : ' 56175ac4fb7d4541bd4479f043d51d7b',
+        'clientSecret'  : '56175ac4fb7d4541bd4479f043d51d7b',
         'callbackURL'   : 'https://localhost:3000/auth/instagram/callback'
     },
 
     'pinterestAuth' : {
         'clientID'      : '4981429134203824452',
-        'clientSecret'  : ' 5c16fe734da1bcf0abf2446e9922b07802e0dc3220b02aa0211e84804eb22473',
+        'clientSecret'  : '5c16fe734da1bcf0abf2446e9922b07802e0dc3220b02aa0211e84804eb22473',
         'callbackURL'   : 'https://localhost:3000/auth/pinterest/callback'
     }
 

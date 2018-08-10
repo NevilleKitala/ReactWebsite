@@ -258,7 +258,7 @@ module.exports = function(passport) {
                    var newUser                 = new User();
 
                    // set all of the user data that we need
-                   newUser.instgram.id          = profile.id;
+                   newUser.instagram.id          = profile.id;
                    newUser.instagram.token       = token;
                    newUser.instagram.username    = profile.username;
                    newUser.instagram.displayName = profile.displayName;
@@ -358,7 +358,7 @@ module.exports = function(passport) {
                    newUser.pinterest.id    = profile.id;
                    newUser.pinterest.token = token;
                    newUser.pinterest.name  = profile.displayName;
-                   newUser.pinterest.email = profile.emails[0].value; // pull the first email
+                   newUser.pinterest.email = profile.email; // pull the first email
 
                    // save the user
                    newUser.save(function(err) {
