@@ -1,0 +1,43 @@
+<!--Combined all elements into one page.
+Hopefully it can be a one page navigation type of site.
+This si just a template based on the idea i sent you.
+-->
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+<head>
+    <title>Node Authentication</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+    <link rel="stylesheet" href="stylesheets/general.css"> <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/buttonsinputs.css"> <!-- Styling all buttons and input boxes used on the page-->
+    <link rel="stylesheet" href="stylesheets/headerstext.css"> <!-- Styling all headers and text used on the page-->
+    <link rel="stylesheet" href="stylesheets/cardsContainers.css"> <!-- Styling all cards and containers used on the page-->
+</head>
+<body class = "text-center auth">
+  <main>
+         <div class="row">
+         <% instagram.forEach(function(insta) { %>
+         <div class="instagram-pic col-sm-3">
+
+             <a href="<%= insta.link %>" target="_blank">
+                 <img src="<%= insta.images.standard_resolution.url %>" class="img-responsive">
+             </a>
+
+             <div class="instagram-bar">
+                 <div class="likes">
+                     <span class="glyphicon glyphicon-heart"></span> <%= insta.likes.count %>
+                 </div>
+
+                 <div class="comments">
+                     <span class="glyphicon glyphicon-comment"></span> <%= insta.comments.count %>
+                 </div>
+             </div>
+
+         </div>
+         <% }); %>
+         </div>
+     </main>
+
+</body>
+</html>

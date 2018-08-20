@@ -46,6 +46,7 @@ module.exports = function(app, passport) {
     res.render('Main.ejs', {
         results: JSON.parse(fbRes) // get the user out of session and pass to template
     });
+    console.log(JSON.parse(fbRes).data);
   })
 });
 
@@ -60,14 +61,4 @@ function isLoggedIn(req, res, next) {
 
     // if they aren't redirect them to the home page
     res.redirect('/');
-};
-
-function notLoggedIn(req, res, next) {
-
-    // if user is authenticated in the session, carry on
-    if (!req.isAuthenticated())
-        return next();
-
-    // if they aren't redirect them to the home page
-    res.redirect('/home');
 };
