@@ -10,12 +10,13 @@ var http = require('http');
 var https = require('https');
 var fs = require('fs');
 var options = {
-    key: fs.readFileSync('Keys/key.pem', 'utf8'),
-    cert: fs.readFileSync('Keys/server.crt', 'utf8')
+    key: fs.readFileSync('c:/OpenSSL-Win32/bin/serverkey.pem', 'utf8'),
+    cert: fs.readFileSync('c:/OpenSSL-Win32/bin/servercert.pem', 'utf8')
 };
 /**
  * Get port from environment and store in Express.
  */
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);

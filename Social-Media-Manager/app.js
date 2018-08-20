@@ -34,7 +34,7 @@ app.use(session({secret: 'work hard'})); // session secret
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash()); // use connect-flash for flash messages stored in session
-app.use(helmet());
+//app.use(helmet());
 
 require('./routes/routes.js')(app, passport);
 require('./routes/facebook.js')(app, passport);

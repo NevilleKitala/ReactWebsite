@@ -28,27 +28,7 @@ p{
   color: #3C4A57;
 }
 
-.btn{
-  border: White;
-  background-color: white;
-  color: #4F6273;
-  padding: 15px;
-  border-radius: 2.5px
-}
 
-.btn-standard{
-  padding: 15px;
-  border-radius: 2.5px
-}
-
-nav a{
-  margin: 0 5px;
-}
-.btn:hover{
-  border: #4F6273;
-  background-color: #4F6273;
-  color: white;
-}
 
 .user-field{
   border-radius: 2.5px 2.5px 0 0;

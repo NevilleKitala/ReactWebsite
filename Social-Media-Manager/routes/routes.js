@@ -10,6 +10,10 @@ module.exports = function(app, passport) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
+    app.get('/main', function(req, res) {
+      res.render('Main.ejs'); // load the index.ejs file
+    });
+
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/home', // redirect to the secure profile section
