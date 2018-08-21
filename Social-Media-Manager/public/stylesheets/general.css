@@ -18,6 +18,8 @@ body {
 
 .selection{
   color: white;
+  width: 90%;
+  margin: 50px 5% 50px 5%;
 }
 
 .cards{
@@ -25,6 +27,10 @@ body {
   height: var(--selection-height);
   border-radius: var(--selection-width);
   overflow: hidden;
+  display:  inline-block;
+  margin: 0 200px 75px 75px;
+  transition: border 0.5s;
+  transition-delay: 0.4s;
 }
 
 .cards:hover > .connect {
@@ -42,7 +48,7 @@ body {
   margin: 0 auto 0;
   top: 50%;
   position: relative;
-  left: 30%;
+  left: 22.5%;
 }
 
 .option{
@@ -59,4 +65,5 @@ body {
   margin-left: 6px;
   border-radius: var(--selection-width);
   width: 139.7px;
+  transition: transform 0.5s;
 }
