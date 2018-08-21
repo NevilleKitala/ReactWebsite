@@ -28,7 +28,7 @@ body {
   border-radius: var(--selection-width);
   overflow: hidden;
   display:  inline-block;
-  margin: 0 200px 75px 75px;
+  margin: 0 138px 75px 138px;
   transition: border 0.5s;
   transition-delay: 0.4s;
 }
@@ -48,7 +48,7 @@ body {
   margin: 0 auto 0;
   top: 50%;
   position: relative;
-  left: 22.5%;
+  left: 22%;
 }
 
 .option{

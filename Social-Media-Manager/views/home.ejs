@@ -55,7 +55,11 @@
         <a class="logo"><span class="fab fa-facebook-f"></span></a>
       </div>
       <div class = "option connect">
-        <a >c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        <% if(user.facebook.id){ %>
+        <a href = "/facebook_feed" class = "connected">m<br/>a<br/>n<br/>a<br/>g<br/>e</a>
+        <% }else{ %>
+        <a href = "/auth/facebook" class = "disconnected">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        <% } %>
       </div>
     </div>
 
@@ -70,7 +74,7 @@
         <a class="logo" ><span class="fab fa-instagram"></span></a>
       </div>
       <div class = "option connect">
-        <a >c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        <a href = "/auth/instagram">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
       </div>
     </div>
 
@@ -81,11 +85,11 @@
     -->
     <div class = "cards">
       <div class = "option option_facebook">
-        <img src="images/instagram_Card.gif" height = "300px" alt="">
+        <img src="images/twitter_Card.gif" height = "300px" alt="">
         <a class="logo" ><span class="fab fa-twitter"></span></a>
       </div>
       <div class = "option connect">
-        <a >c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        <a href = "/auth/twitter">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
       </div>
     </div>
 
@@ -97,13 +101,25 @@
     <div class = "cards">
       <div class = "option option_facebook">
         <img src="images/instagram_Card.gif" height = "300px" alt="">
-        <a class="logo" ><span class="fab fa-pinterest"></span></a>
+        <a class="logo" ><span class="fab fa-google"></span></a>
       </div>
       <div class = "option connect">
-        <a >c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        <a href = "/auth/google">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
       </div>
     </div>
 
   </main>
+
+  <!--
+   ==========================================================================================================================================
+   Javascripts
+   ==========================================================================================================================================
+  -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+
 </body>
 </html>

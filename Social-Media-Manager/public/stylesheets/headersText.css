@@ -6,6 +6,12 @@
 body{
   font-size: 2em;
   font-family: 'Abel';
+
+}
+
+a, a:hover ,a:visited, .disconnected{
+  text-decoration: none;
+  color: var(--color-disconnected);
 }
 
 .dropdown{
@@ -26,7 +32,17 @@ body{
 }
 
 .connect{
-  font-size: 0.75em;
-  color: var(--color-disconnected);
+  font-size: 0.55em;
   text-align: center;
+  line-height: 2em;
+}
+
+.disconnected ,.disconnected:hover,.disconnected:visited{
+  text-decoration: none;
+}
+
+.connected, .connected:hover, .connected:visited{
+  font-size: 0.9em;
+  line-height: 2.5em;
+  color: var(--color-connected);
 }
