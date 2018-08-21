@@ -1,0 +1,15 @@
+.dropdown{
+  font-size: 0.6em;
+}
+
+.dropdown:hover{
+  font-size: 0.6em;
+  text-decoration: none;
+}
+.selection{
+  color: white;
+}
+
+.selection .option .logo{
+  font-size: 3em;
+}
