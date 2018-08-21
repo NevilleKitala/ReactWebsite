@@ -1,6 +1,7 @@
 :root {
     --selection-height: 300px;
-    --selection-width: 139.7px;
+    --selection-width: 150px;
+    --color-disconnected: #999;
 }
 
 body {
@@ -9,7 +10,6 @@ body {
   position: absolute;
   top: 0;
   left:0;
-  font-size: 2em;
 }
 
 .container{
@@ -20,19 +20,43 @@ body {
   color: white;
 }
 
-.selection .option .logo{
-  font-size: 3em;
+.cards{
+  width: var(--selection-width);
+  height: var(--selection-height);
+  border-radius: var(--selection-width);
+  overflow: hidden;
+}
+
+.cards:hover > .connect {
+    transform: translate(0, -300px);
+    transition: transform 0.5s;
+}
+
+.cards:hover{
+  border: solid 1px var(--color-disconnected);
+  transition: border 0.5s;
+  transition-delay: 0.4s;
+}
+
+.option_facebook .logo{
   margin: 0 auto 0;
   top: 50%;
   position: relative;
   left: 30%;
 }
 
+.option{
+  width: var(--selection-width);
+  height: var(--selection-height);
+}
+
 .selection img{
   position:absolute;
 }
 
-.option{
-  width: var(--selection-width);
-  height: var(--selection-height);
+.connect{
+  background: white;
+  margin-left: 6px;
+  border-radius: var(--selection-width);
+  width: 139.7px;
 }

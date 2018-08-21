@@ -1,5 +1,16 @@
+:root {
+    --color-connected: #42b72a;
+    --color-disconnected: #999;
+}
+
+body{
+  font-size: 2em;
+  font-family: 'Abel';
+}
+
 .dropdown{
   font-size: 0.6em;
+  transition: 2s;
 }
 
 .dropdown:hover{
@@ -10,6 +21,12 @@
   color: white;
 }
 
-.selection .option .logo{
+.selection .logo{
   font-size: 3em;
+}
+
+.connect{
+  font-size: 0.75em;
+  color: var(--color-disconnected);
+  text-align: center;
 }
