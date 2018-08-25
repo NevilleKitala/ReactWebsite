@@ -1,12 +1,26 @@
+:root {
+    --selection-height: 300px;
+    --selection-width: 150px;
+    --color-disconnected: #999;
+    --color-text: #212529;
+}
+
 .btn{
+  background-color: var(--color-text);
   border: White;
-  height: 50px;
   width: 100px;
   padding: 15px;
+  margin:auto;
+}
+
+.signup-btn, .login-btn{
+  background: transparent;
+  border: none;
+  color: var(--color-disconnected);
 }
 
 .btn-dark{
-  
+
 }
 
 .btn-dark:hover{

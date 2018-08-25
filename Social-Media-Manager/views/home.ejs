@@ -1,125 +1,147 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- fonts for the page -->
-  <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fonts for the page -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
 
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
-  <!-- Styling all cards and containers used on the page-->
-  <link rel="stylesheet" href="stylesheets/general.css">
-  <!-- Styling all buttons and input boxes used on the page-->
-  <link rel="stylesheet" href="stylesheets/buttonsinputs.css">
-  <!-- Styling all headers and text used on the page-->
-  <link rel="stylesheet" href="stylesheets/headerstext.css">
-  <!-- Styling all cards and containers used on the page-->
-  <link rel="stylesheet" href="stylesheets/cardsContainers.css">
-</head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <!-- Styling all buttons and input boxes used on the page-->
+    <link rel="stylesheet" href="stylesheets/buttonsinputs.css">
+    <!-- Styling all headers and text used on the page-->
+    <link rel="stylesheet" href="stylesheets/headerstext.css">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/cardsContainers.css">
+  </head>
 
-<body>
+  <body>
+    <!--
+     ==========================================================================================================================================
+     Navigation bar
+     ==========================================================================================================================================
+    -->
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+     <h5 class="my-0 mr-md-auto font-weight-normal">App Title</h5>
+         <nav class="my-2 my-md-0 mr-md-3">
+             <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span >
+               <%= user.local.name %>
+             </a>
+               <div class="dropdown-menu text-dark">
+                 <a class="p-2 text-light logout links" href="/logout"><span class="fa fa-unlock"></span> Log out</a>
+               </div>
+         </nav>
+    </div>
+
+    <!--
+     ==========================================================================================================================================
+     Selection Main Page Menu
+     ==========================================================================================================================================
+    -->
+    <main class = "main selection">
+
+      <!--
+       ==========================================================================================================================================
+       facebook button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards">
+        <div class = "option option_facebook">
+          <img src="images/Facebook_Card.gif" height = "300px" alt="">
+          <a class="logo"><span class="fab fa-facebook-f"></span></a>
+        </div>
+        <div class = "option connect">
+          <% if(user.facebook.id){ %>
+          <a href = "/facebook_feed" class = "connected">m<br/>a<br/>n<br/>a<br/>g<br/>e</a>
+          <% }else{ %>
+          <a href = "/auth/facebook" class = "connected">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+          <% } %>
+        </div>
+      </div>
+
+      <!--
+       ==========================================================================================================================================
+       facebook button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards">
+        <div class = "option option_facebook">
+          <img src="images/instagram_Card.gif" height = "300px" alt="">
+          <a class="logo" ><span class="fab fa-instagram"></span></a>
+        </div>
+        <div class = "option connect">
+          <% if(user.instagram.id){ %>
+          <a href = "/instgram_feed" class = "connected">m<br/>a<br/>n<br/>a<br/>g<br/>e</a>
+          <% }else{ %>
+          <a href = "/auth/instagram">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+          <% } %>
+        </div>
+      </div>
+
+      <!--
+       ==========================================================================================================================================
+       Twitter button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards">
+        <div class = "option option_facebook">
+          <img src="images/twitter_Card.gif" height = "300px" alt="">
+          <a class="logo" ><span class="fab fa-twitter"></span></a>
+        </div>
+        <div class = "option connect">
+          <a href = "/auth/twitter">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        </div>
+      </div>
+
+      <!--
+       ==========================================================================================================================================
+       Pinterest button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards">
+        <div class = "option option_facebook">
+          <img src="images/instagram_Card.gif" height = "300px" alt="">
+          <a class="logo" ><span class="fab fa-google"></span></a>
+        </div>
+        <div class = "option connect">
+          <a href = "/auth/google">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
+        </div>
+      </div>
+
+    </main>
+
+    <!--
+     ==========================================================================================================================================
+     Javascripts
+     ==========================================================================================================================================
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+    <script src="javascripts/animation.js"></script>
+
+  </body>
+
   <!--
    ==========================================================================================================================================
-   Navigation bar
+   Welcome Screen
    ==========================================================================================================================================
   -->
 
-  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
-   <h5 class="my-0 mr-md-auto font-weight-normal">App Title</h5>
-       <nav class="my-2 my-md-0 mr-md-3">
-           <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-user-circle"></span >
-             <%= user.local.name %>
-           </a>
-             <div class="dropdown-menu text-dark">
-               <a class="p-2 text-light logout links" href="/logout"><span class="fa fa-unlock"></span> Log out</a>
-             </div>
-       </nav>
+  <div class = "welcome content-hidden" id = "welcome">
+    <div class = "content-wrap">
+      <ul class = "appear-text">
+        <li>H</li>
+        <li>e</li>
+        <li>y</li>
+      </ul>
+    </div>
   </div>
 
-  <!--
-   ==========================================================================================================================================
-   Selection Main Page Menu
-   ==========================================================================================================================================
-  -->
-  <main class = "main selection">
-
-    <!--
-     ==========================================================================================================================================
-     facebook button
-     ==========================================================================================================================================
-    -->
-    <div class = "cards">
-      <div class = "option option_facebook">
-        <img src="images/Facebook_Card.gif" height = "300px" alt="">
-        <a class="logo"><span class="fab fa-facebook-f"></span></a>
-      </div>
-      <div class = "option connect">
-        <% if(user.facebook.id){ %>
-        <a href = "/facebook_feed" class = "connected">m<br/>a<br/>n<br/>a<br/>g<br/>e</a>
-        <% }else{ %>
-        <a href = "/auth/facebook" class = "disconnected">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
-        <% } %>
-      </div>
-    </div>
-
-    <!--
-     ==========================================================================================================================================
-     facebook button
-     ==========================================================================================================================================
-    -->
-    <div class = "cards">
-      <div class = "option option_facebook">
-        <img src="images/instagram_Card.gif" height = "300px" alt="">
-        <a class="logo" ><span class="fab fa-instagram"></span></a>
-      </div>
-      <div class = "option connect">
-        <a href = "/auth/instagram">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
-      </div>
-    </div>
-
-    <!--
-     ==========================================================================================================================================
-     Twitter button
-     ==========================================================================================================================================
-    -->
-    <div class = "cards">
-      <div class = "option option_facebook">
-        <img src="images/twitter_Card.gif" height = "300px" alt="">
-        <a class="logo" ><span class="fab fa-twitter"></span></a>
-      </div>
-      <div class = "option connect">
-        <a href = "/auth/twitter">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
-      </div>
-    </div>
-
-    <!--
-     ==========================================================================================================================================
-     Pinterest button
-     ==========================================================================================================================================
-    -->
-    <div class = "cards">
-      <div class = "option option_facebook">
-        <img src="images/instagram_Card.gif" height = "300px" alt="">
-        <a class="logo" ><span class="fab fa-google"></span></a>
-      </div>
-      <div class = "option connect">
-        <a href = "/auth/google">c<br/>o<br/>n<br/>n<br/>e<br/>c<br/>t<br/>?</a>
-      </div>
-    </div>
-
-  </main>
-
-  <!--
-   ==========================================================================================================================================
-   Javascripts
-   ==========================================================================================================================================
-  -->
-
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-
-</body>
 </html>

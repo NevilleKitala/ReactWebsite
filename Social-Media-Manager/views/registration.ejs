@@ -1,0 +1,103 @@
+<!-- views/signup.ejs -->
+<!doctype html>
+<html>
+  <head>
+    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fonts for the page -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <!-- Styling all buttons and input boxes used on the page-->
+    <link rel="stylesheet" href="stylesheets/buttonsinputs.css">
+    <!-- Styling all headers and text used on the page-->
+    <link rel="stylesheet" href="stylesheets/headerstext.css">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/cardsContainers.css">
+  </head>
+
+  <body class = "text-center">
+    <main class = "auth content-hidden" id "auth">
+      <!--
+       ==========================================================================================================================================
+       Shows message if there are any errors
+       ==========================================================================================================================================
+      -->
+
+      <% if (message.length > 0) { %>
+          <div class="alert alert-danger"><%= message %></div>
+      <% } %>
+
+      <!--
+       ==========================================================================================================================================
+       Signup form
+       ==========================================================================================================================================
+      -->
+      <div class = "signup-form">
+        <form action="/signup" method="post" class = "form-signin">
+          <div class = "user-input">
+            <div class = "user-field">
+              <label class="sr-only" >Username</label>
+              <input class="form-control" placeholder="Username" type="text" name = "name">
+            </div>
+            <div class = "user-field">
+              <label class="sr-only" >Email</label>
+              <input class="form-control" placeholder="Email" type="text" name = "email">
+            </div>
+            <div class = "user-field">
+              <label class="sr-only" >Password</label>
+              <input class="form-control" placeholder="Password"  type="password" name = "password">
+            </div>
+          </div>
+          <hr>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign up</button>
+        </form>
+
+          <p>Already have an account? <button class = "links login-btn" id = "login">Login</button></p>
+          <p>Or go <a class = "links" href="/">back</a></p>
+      </div>
+
+      <div class = "login-form swipe">
+        <form action="/login" method="post" class = "form-signin">
+          <div class = "user-input">
+            <div class = "user-field hidden">
+              <label class="sr-only" ></label>
+              <input class="form-control" >
+            </div>
+            <div class = "user-field">
+              <label class="sr-only" >Email</label>
+              <input class="form-control" placeholder="Email" type="text" name = "email">
+            </div>
+            <div class = "user-field">
+              <label class="sr-only" >Password</label>
+              <input class="form-control" placeholder="Password"  type="password" name = "password">
+            </div>
+          </div>
+          <hr>
+          <button class="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
+        </form>
+
+          <p>Already have an account? <a class = "links signup-btn" id = "signup" >signup</a></p>
+          <p>Or go <a class = "links" href="/">back</a></p>
+      </div>
+
+    </main>
+
+  <!--
+   ==========================================================================================================================================
+   Javascripts
+   ==========================================================================================================================================
+  -->
+
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
+  <script src="javascripts/animation.js"></script>
+
+  </body>
+</html>

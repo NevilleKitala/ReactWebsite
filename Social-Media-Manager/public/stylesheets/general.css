@@ -2,6 +2,7 @@
     --selection-height: 300px;
     --selection-width: 150px;
     --color-disconnected: #999;
+    --color-text: #212529;
 }
 
 body {
@@ -10,6 +11,56 @@ body {
   position: absolute;
   top: 0;
   left:0;
+}
+
+.auth{
+  width: 25%;
+  height: auto;
+  margin: 15% 35%;
+  background-color: white;
+  overflow: hidden;
+}
+
+.auth .form-signin .user-field{
+  opacity: 1;
+  margin-bottom: 20px;
+  transition: all 0.5s ease;
+}
+
+.auth .form-signin .user-input{
+  overflow: hidden;
+}
+.auth.content-hidden .form-signin .user-input .user-field{
+  opacity: 0;
+  margin-bottom: 20px;
+}
+
+.auth.content-hidden .form-signin .user-input .user-field:nth-child(1){
+  transform: translate3d(0, 150px, 0);
+}
+.auth.content-hidden .form-signin .user-input .user-field:nth-child(2){
+  transform: translate3d(0, 150px, 0);
+}
+.auth.content-hidden .form-signin .user-input .user-field:nth-child(3){
+  transform: translate3d(0, 150px, 0);
+}
+.auth.content-hidden .form-signin .user-input .user-field:nth-child(4){
+  transform: translate3d(0, 150px, 0);
+}
+.auth.content-hidden .form-signin .user-input .user-field:nth-child(5){
+  transform: translate3d(0, 150px, 0);
+}
+
+.auth .form-signin .user-field:nth-child(2){
+  transition-delay: 0.10s;
+}
+
+.auth .form-signin .user-field:nth-child(3){
+  transition-delay: 0.20s;
+}
+
+.auth .form-signin .user-field:nth-child(3){
+  transition-delay: 0.30s;
 }
 
 .container{
@@ -29,19 +80,12 @@ body {
   overflow: hidden;
   display:  inline-block;
   margin: 0 138px 75px 138px;
-  transition: border 0.5s;
-  transition-delay: 0.4s;
 }
 
 .cards:hover > .connect {
-    transform: translate(0, -300px);
+    transform: translate(0, -287.5px);
     transition: transform 0.5s;
-}
-
-.cards:hover{
-  border: solid 1px var(--color-disconnected);
-  transition: border 0.5s;
-  transition-delay: 0.4s;
+    transition-delay: 0.2s;
 }
 
 .option_facebook .logo{
@@ -62,8 +106,108 @@ body {
 
 .connect{
   background: white;
-  margin-left: 6px;
+  margin-left: 11.7px;
   border-radius: var(--selection-width);
-  width: 139.7px;
+  width: 128.7px;
   transition: transform 0.5s;
+  height: 277px;
+  transition-delay: 0.2s;
+}
+
+.welcome{
+  position:absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background-color: white;
+  overflow: hidden;
+}
+
+.welcome .content-wrap {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+.appear-text{
+  list-style: none;
+  overflow: hidden;
+  height: 144px;
+  margin: 0;
+  padding: 0;
+}
+
+.welcome .content-wrap .appear-text li{
+  display: inline-block;
+  margin-right: 30px;
+  opacity: 1;
+  transition: all 0.5s ease;
+}
+
+.welcome .content-wrap .appear-text:last-child{
+  margin-right: 0;
+}
+
+.welcome.content-hidden .content-wrap .appear-text li:nth-child(1){
+  transform: translate3d(0, 250px, 0);
+}
+
+.welcome.content-hidden .content-wrap .appear-text li:nth-child(2){
+  transform: translate3d(0, 250px, 0);
+}
+
+.welcome.content-hidden .content-wrap .appear-text li:nth-child(3){
+  transform: translate3d(0, 250px, 0);
+}
+
+.welcome .content-wrap .appear-text li:nth-child(2){
+  transition-delay: 0.25s;
+}
+
+.welcome .content-wrap .appear-text li:nth-child(3){
+  transition-delay: 0.5s;
+}
+
+.remove {
+  left: 100%;
+  transition: left 0.11s ease;
+}
+
+.disappear .content-wrap{
+  transition: all 2s ease;
+}
+
+.disappear .content-wrap .appear-text li:nth-child(1){
+  transform: translate3d(0, 150px, 0);
+}
+
+.disappear .content-wrap .appear-text li:nth-child(2){
+  transform: translate3d(0, 250px, 0);
+}
+
+.disappear .content-wrap .appear-text li:nth-child(3){
+  transform: translate3d(0, 250px, 0);
+}
+
+.disappear{
+  background: transparent;
+  transition: 1s ease;
+  transition-delay: 2s;
+}
+
+.swipe{
+  overflow: hidden;
+  height: 0;
+}
+
+.swipeback{
+  overflow: hidden;
+  height: auto;
+}
+
+.hidden .form-control{
+  border: transparent;
+  margin-bottom: 20px;
 }

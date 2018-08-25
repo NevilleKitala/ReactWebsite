@@ -210,45 +210,70 @@ module.exports = function(passport) {
 
        consumerKey     : configAuth.twitterAuth.consumerKey,
        consumerSecret  : configAuth.twitterAuth.consumerSecret,
-       callbackURL     : configAuth.twitterAuth.callbackURL
+       callbackURL     : configAuth.twitterAuth.callbackURL,
+       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
    },
-   function(token, tokenSecret, profile, done) {
+   function(req, token, refreshToken, profile, done) {
 
-       // make the code asynchronous
-   // User.findOne won't fire until we have all our data back from Twitter
+       // asynchronous
        process.nextTick(function() {
 
-           User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
+           // check if the user is already logged in
+           if (!req.user) {
 
-               // if there is an error, stop everything and return that
-               // ie an error connecting to the database
-               if (err)
-                   return done(err);
+               // find the user in the database based on their facebook id
+               User.findOne({ 'twitter.id' : profile.id }, function(err, user) {
 
-               // if the user is found then log them in
-               if (user) {
-                   return done(null, user); // user found, return that user
-               } else {
-                   // if there is no user, create them
-                   var newUser                 = new User();
+                   // if there is an error, stop everything and return that
+                   // ie an error connecting to the database
+                   if (err)
+                       return done(err);
 
-                   // set all of the user data that we need
-                   newUser.twitter.id          = profile.id;
-                   newUser.twitter.token       = token;
-                   newUser.twitter.username    = profile.username;
-                   newUser.twitter.displayName = profile.displayName;
+                   // if the user is found, then log them in
+                   if (user) {
+                       return done(null, user); // user found, return that user
+                   } else {
+                       // if there is no user found with that facebook id, create them
+                       var newUser            = new User();
 
-                   // save our user into the database
-                   newUser.save(function(err) {
-                       if (err)
-                           throw err;
-                       return done(null, newUser);
-                   });
-               }
-           });
+                       // set all of the facebook information in our user model
+                       newUser.twitter.id          = profile.id;
+                       newUser.twitter.token       = token;
+                       newUser.twitter.username    = profile.username;
+                       newUser.twitter.displayName = profile.displayName;
 
-   });
+                       // save our user to the database
+                       newUser.save(function(err) {
+                           if (err)
+                               throw err;
+
+                           // if successful, return the new user
+                           return done(null, newUser);
+                       });
+                   }
+
+               });
+
+           } else {
+               // user already exists and is logged in, we have to link accounts
+               var user            = req.user; // pull the user out of the session
+
+               // update the current users facebook credentials
+               user.twitter.id    = profile.id;
+               user.twitter.token = token;
+               user.twitter.name  = profile.username;
+               user.twitter.email = profile.displayName;
+
+               // save the user
+               user.save(function(err) {
+                   if (err)
+                       throw err;
+                   return done(null, user);
+               });
+           }
+
+       });
 
    }));
 
@@ -260,43 +285,68 @@ module.exports = function(passport) {
      clientID        : configAuth.instagramAuth.clientID,
      clientSecret    : configAuth.instagramAuth.clientSecret,
      callbackURL     : configAuth.instagramAuth.callbackURL,
+     passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
    },
-   function(token, tokenSecret, profile, done) {
+   function(req, token, refreshToken, profile, done) {
 
-       // make the code asynchronous
-   // User.findOne won't fire until we have all our data back from Twitter
+       // asynchronous
        process.nextTick(function() {
 
-           User.findOne({ 'instagram.id' : profile.id }, function(err, user) {
+           // check if the user is already logged in
+           if (!req.user) {
 
-               // if there is an error, stop everything and return that
-               // ie an error connecting to the database
-               if (err)
-                   return done(err);
+               // find the user in the database based on their facebook id
+               User.findOne({ 'instagram.id' : profile.id }, function(err, user) {
 
-               // if the user is found then log them in
-               if (user) {
-                   return done(null, user); // user found, return that user
-               } else {
-                   // if there is no user, create them
-                   var newUser                 = new User();
+                   // if there is an error, stop everything and return that
+                   // ie an error connecting to the database
+                   if (err)
+                       return done(err);
 
-                   // set all of the user data that we need
-                   newUser.instagram.id          = profile.id;
-                   newUser.instagram.token       = token;
-                   newUser.instagram.username    = profile.username;
-                   newUser.instagram.displayName = profile.displayName;
+                   // if the user is found, then log them in
+                   if (user) {
+                       return done(null, user); // user found, return that user
+                   } else {
+                       // if there is no user found with that facebook id, create them
+                       var newUser            = new User();
 
-                   // save our user into the database
-                   newUser.save(function(err) {
-                       if (err)
-                           throw err;
-                       return done(null, newUser);
-                   });
-               }
-           });
+                       // set all of the facebook information in our user model
+                       newUser.instagram.id          = profile.id;
+                       newUser.instagram.token       = token;
+                       newUser.instagram.username    = profile.username;
+                       newUser.instagram.displayName = profile.displayName;
 
-   });
+                       // save our user to the database
+                       newUser.save(function(err) {
+                           if (err)
+                               throw err;
+
+                           // if successful, return the new user
+                           return done(null, newUser);
+                       });
+                   }
+
+               });
+
+           } else {
+               // user already exists and is logged in, we have to link accounts
+               var user            = req.user; // pull the user out of the session
+
+               // update the current users facebook credentials
+               user.instagram.id    = profile.id;
+               user.instagram.token = token;
+               user.instagram.name  = profile.username;
+               user.instagram.email = profile.displayName;
+
+               // save the user
+               user.save(function(err) {
+                   if (err)
+                       throw err;
+                   return done(null, user);
+               });
+           }
+
+       });
 
    }));
 
@@ -309,47 +359,74 @@ module.exports = function(passport) {
        clientID        : configAuth.googleAuth.clientID,
        clientSecret    : configAuth.googleAuth.clientSecret,
        callbackURL     : configAuth.googleAuth.callbackURL,
+       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
    },
-   function(token, refreshToken, profile, done) {
+   function(req, token, refreshToken, profile, done) {
 
-       // make the code asynchronous
-       // User.findOne won't fire until we have all our data back from Google
+       // asynchronous
        process.nextTick(function() {
 
-           // try to find the user based on their google id
-           User.findOne({ 'google.id' : profile.id }, function(err, user) {
-               if (err)
-                   return done(err);
+           // check if the user is already logged in
+           if (!req.user) {
 
-               if (user) {
+               // find the user in the database based on their facebook id
+               User.findOne({ 'google.id' : profile.id }, function(err, user) {
 
-                   // if a user is found, log them in
+                   // if there is an error, stop everything and return that
+                   // ie an error connecting to the database
+                   if (err)
+                       return done(err);
+
+                   // if the user is found, then log them in
+                   if (user) {
+                       return done(null, user); // user found, return that user
+                   } else {
+                       // if there is no user found with that facebook id, create them
+                       var newUser            = new User();
+
+                       // set all of the facebook information in our user model
+                       newUser.google.id    = profile.id;
+                       newUser.google.token = token;
+                       newUser.google.name  = profile.displayName;
+                       newUser.google.email = profile.emails[0].value; // pull the first email
+
+                       // save our user to the database
+                       newUser.save(function(err) {
+                           if (err)
+                               throw err;
+
+                           // if successful, return the new user
+                           return done(null, newUser);
+                       });
+                   }
+
+               });
+
+           } else {
+               // user already exists and is logged in, we have to link accounts
+               var user            = req.user; // pull the user out of the session
+
+               // update the current users facebook credentials
+               user.google.id    = profile.id;
+               user.google.token = token;
+               user.google.name  = profile.displayName;
+               user.google.email = profile.emails[0].value; // pull the first email
+
+               // save the user
+               user.save(function(err) {
+                   if (err)
+                       throw err;
                    return done(null, user);
-               } else {
-                   // if the user isnt in our database, create a new user
-                   var newUser          = new User();
+               });
+           }
 
-                   // set all of the relevant information
-                   newUser.google.id    = profile.id;
-                   newUser.google.token = token;
-                   newUser.google.name  = profile.displayName;
-                   newUser.google.email = profile.emails[0].value; // pull the first email
-
-                   // save the user
-                   newUser.save(function(err) {
-                       if (err)
-                           throw err;
-                       return done(null, newUser);
-                   });
-               }
-           });
        });
 
    }));
 
    // =========================================================================
-   // GOOGLE ==================================================================
+   // Pinterest ==================================================================
    // =========================================================================
 
    passport.use(new PinterestStrategy({
@@ -357,42 +434,71 @@ module.exports = function(passport) {
        clientID        : configAuth.pinterestAuth.clientID,
        clientSecret    : configAuth.pinterestAuth.clientSecret,
        callbackURL     : configAuth.pinterestAuth.callbackURL,
+       passReqToCallback : true // allows us to pass in the req from our route (lets us check if a user is logged in or not)
 
    },
-   function(token, refreshToken, profile, done) {
+   function(req, token, refreshToken, profile, done) {
 
-       // make the code asynchronous
-       // User.findOne won't fire until we have all our data back from Google
+       // asynchronous
        process.nextTick(function() {
 
-           // try to find the user based on their google id
-           User.findOne({ 'pinterest.id' : profile.id }, function(err, user) {
-               if (err)
-                   return done(err);
+           // check if the user is already logged in
+           if (!req.user) {
 
-               if (user) {
+               // find the user in the database based on their facebook id
+               User.findOne({ 'pinterest.id' : profile.id }, function(err, user) {
 
-                   // if a user is found, log them in
+                   // if there is an error, stop everything and return that
+                   // ie an error connecting to the database
+                   if (err)
+                       return done(err);
+
+                   // if the user is found, then log them in
+                   if (user) {
+                       return done(null, user); // user found, return that user
+                   } else {
+                       // if there is no user found with that facebook id, create them
+                       var newUser            = new User();
+
+                       // set all of the facebook information in our user model
+                       newUser.pinterest.id          = profile.id;
+                       newUser.pinterest.token       = token;
+                       newUser.pinterest.name        = profile.displayName;
+                       newUser.pinterest.email       = profile.email;
+
+                       // save our user to the database
+                       newUser.save(function(err) {
+                           if (err)
+                               throw err;
+
+                           // if successful, return the new user
+                           return done(null, newUser);
+                       });
+                   }
+
+               });
+
+           } else {
+               // user already exists and is logged in, we have to link accounts
+               var user            = req.user; // pull the user out of the session
+
+               // update the current users facebook credentials
+               user.pinterest.id    = profile.id;
+               user.pinterest.token = token;
+               user.pinterest.name  = profile.displayName;
+               user.pinterest.email = profile.email;
+
+               // save the user
+               user.save(function(err) {
+                   if (err)
+                       throw err;
                    return done(null, user);
-               } else {
-                   // if the user isnt in our database, create a new user
-                   var newUser          = new User();
+               });
+           }
 
-                   // set all of the relevant information
-                   newUser.pinterest.id    = profile.id;
-                   newUser.pinterest.token = token;
-                   newUser.pinterest.name  = profile.displayName;
-                   newUser.pinterest.email = profile.email; // pull the first email
-
-                   // save the user
-                   newUser.save(function(err) {
-                       if (err)
-                           throw err;
-                       return done(null, newUser);
-                   });
-               }
-           });
        });
 
    }));
+
+
 };
