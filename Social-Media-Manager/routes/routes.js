@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
     }));
 
     app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
+        res.redirect('/register'); // load the index.ejs file
     });
 
 
@@ -32,7 +32,7 @@ module.exports = function(app, passport) {
     // Registration ========================
     // =====================================
     // show the signup form
-    app.get('/signup', function(req, res) {
+    app.get('/register', function(req, res) {
 
         // render the page and pass in any flash data if it exists
         res.render('registration.ejs', { message: req.flash('signupMessage') });
@@ -67,7 +67,7 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/');
+        res.redirect('/register');
     });
 
     app.post('/send-email', isLoggedIn, function (req, res) {

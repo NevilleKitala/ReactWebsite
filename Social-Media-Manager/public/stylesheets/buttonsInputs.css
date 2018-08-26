@@ -13,11 +13,20 @@
   margin:auto;
 }
 
+.btn:hover{
+  background-color: white;
+  transition: 2s ease;
+  color: var(--color-text);
+  border: 1px solid var(--color-text);
+}
+
 .signup-btn, .login-btn{
   background: transparent;
   border: none;
   color: var(--color-disconnected);
 }
+
+
 
 .btn-dark{
 

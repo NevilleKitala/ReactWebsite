@@ -17,13 +17,14 @@ $(function(){
   function SplashScreenOutroRemove() {
     setTimeout(function(){
       welcome.addClass("remove")
+      greeting ++;
     }, 4000);
   }
 
   SplashScreenIntro();
   }
 
-  else if (location.href == "https://localhost:3000/signup") {
+  else if (location.href == "https://localhost:3000/register") {
     function SplashScreenIntro() {
       setTimeout(function(){
         auth.removeClass('content-hidden');
