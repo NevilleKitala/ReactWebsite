@@ -1,6 +1,6 @@
 :root {
-    --selection-height: 300px;
-    --selection-width: 150px;
+    --selection-height: 750px;
+    --selection-width: 500px;
     --color-disconnected: #999;
     --color-text: #212529;
 }
@@ -11,6 +11,7 @@ body {
   position: absolute;
   top: 0;
   left:0;
+  overflow: hidden;
 }
 
 .auth{
@@ -18,7 +19,12 @@ body {
   height: auto;
   margin: 15% 35%;
   background-color: white;
-  overflow: hidden;
+}
+
+.username{
+  position: fixed;
+  bottom: 10%;
+  transform: rotate(90deg);
 }
 
 .auth .form-signin .user-field{
@@ -67,60 +73,12 @@ body {
   margin: 100px 200px;
 }
 
-.selection{
-  color: white;
-  width: 90%;
-  margin: 50px 5% 50px 5%;
-}
-
-.cards{
-  width: var(--selection-width);
-  height: var(--selection-height);
-  border-radius: var(--selection-width);
-  overflow: hidden;
-  display:  inline-block;
-  margin: 0 138px 75px 138px;
-}
-
-.cards:hover > .connect {
-    transform: translate(0, -287.5px);
-    transition: transform 0.5s;
-    transition-delay: 0.2s;
-}
-
-.option_facebook .logo{
-  margin: 0 auto 0;
-  top: 50%;
-  position: relative;
-  left: 22%;
-}
-
-.option{
-  width: var(--selection-width);
-  height: var(--selection-height);
-}
-
-.selection img{
-  position:absolute;
-}
-
-.connect{
-  background: white;
-  margin-left: 11.7px;
-  border-radius: var(--selection-width);
-  width: 128.7px;
-  transition: transform 0.5s;
-  height: 277px;
-  transition-delay: 0.2s;
-}
-
 .welcome{
   position:absolute;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  background-color: white;
   overflow: hidden;
 }
 
@@ -150,22 +108,9 @@ body {
   margin-right: 0;
 }
 
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(1){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(2){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(3){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(4){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(5){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(6){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(7){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(8){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(9){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(10){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(11){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(13){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(14){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(15){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(16){transform: translate3d(0, 250px, 0);}
-.welcome.content-hidden .content-wrap .appear-text li:nth-child(17){transform: translate3d(0, 250px, 0);}
+.welcome.content-hidden .content-wrap .appear-text li{
+  transform: translate3d(0, 250px, 0);
+}
 
 .welcome .content-wrap .appear-text li:nth-child(2){transition-delay: 0.1s;}
 .welcome .content-wrap .appear-text li:nth-child(3){transition-delay: 0.15s;}
@@ -181,11 +126,6 @@ body {
 .welcome .content-wrap .appear-text li:nth-child(13){transition-delay: 0.65s;}
 .welcome .content-wrap .appear-text li:nth-child(14){transition-delay: 0.7s;}
 .welcome .content-wrap .appear-text li:nth-child(15){transition-delay: 0.75s;}
-
-.remove {
-  left: 100%;
-  transition: left 0.11s ease;
-}
 
 .disappear .content-wrap{
   transition: all 2s ease;
@@ -208,9 +148,9 @@ body {
 .disappear .content-wrap .appear-text li:nth-child(15){transform: translate3d(0, 250px, 0);}
 
 .disappear{
-  background: transparent;
+  opacity: 0;
   transition: 1s ease;
-  transition-delay: 2s;
+  transition-delay: 1s;
 }
 
 .swipe{
@@ -226,4 +166,8 @@ body {
 .hidden .form-control{
   border: transparent;
   margin-bottom: 20px;
+}
+
+.black{
+  background-color: var(--color-text);
 }

@@ -38,7 +38,7 @@
        ==========================================================================================================================================
       -->
       <div class = "signup-form">
-        <form action="/signup" method="post" class = "form-signin">
+        <form action="/signup" method="post" class = "form-signin" name = "signup">
           <div class = "user-input">
             <div class = "user-field">
               <label class="sr-only" >Username</label>
@@ -54,10 +54,10 @@
             </div>
           </div>
           <hr>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign up</button>
+          <button class="btn btn-lg btn-primary btn-block submit-sigin" type="submit" onclick = "completeAnimation();">Sign up</button>
         </form>
 
-          <p>Already have an account? <button class = "links login-btn" id = "login">Login</button></p>
+          <p>Already have an account? <button class = "links login-btn" id = "login" >Login</button></p>
           <p>Or go <a class = "links" href="/">back</a></p>
       </div>
 
@@ -78,7 +78,7 @@
             </div>
           </div>
           <hr>
-          <button class="btn btn-lg btn-primary btn-block" type="submit" >Login</button>
+          <button class="btn btn-lg btn-primary btn-block submit-login" type="submit">Login</button>
         </form>
 
           <p>Already have an account? <a class = "links signup-btn" id = "signup" >signup</a></p>

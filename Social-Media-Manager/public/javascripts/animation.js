@@ -1,6 +1,8 @@
 $(function(){
   var welcome = $('.welcome');
   var auth = $('.auth');
+  var selection = $('.selection');
+  var option = $('.logo');
 
   if (location.href == "https://localhost:3000/home"){
   function SplashScreenIntro() {
@@ -11,17 +13,34 @@ $(function(){
   function SplashScreenOutro() {
     setTimeout(function(){
       welcome.addClass("disappear")
-    }, 3000,SplashScreenOutroRemove());
+    }, 3000,loadCards(4000));
   }
 
-  function SplashScreenOutroRemove() {
+    function loadCards() {
     setTimeout(function(){
-      welcome.addClass("remove")
-      greeting ++;
-    }, 4000);
+      selection.removeClass("hidden")
+    }, 4000 ,loadLogos());
   }
 
-  SplashScreenIntro();
+  function loadCardsRecursive() {
+  setTimeout(function(){
+    selection.removeClass("hidden")
+  }, 400 ,loadLogos());
+}
+
+    function loadLogos(){
+      setTimeout(function(){
+        option.removeClass("transparent")
+      }, 2500);
+    }
+
+    if(!Cookies.get("visits")){
+      SplashScreenIntro();
+      Cookies.set("visits", 1);
+    }
+    else {
+      loadCardsRecursive();
+    }
   }
 
   else if (location.href == "https://localhost:3000/register") {
@@ -59,6 +78,33 @@ $(function(){
       $('.signup-form').removeClass('swipe');
       $('.signup-form').addClass('swipeback');
     }, 800);
+    });
+
+    $('.submit-signin').click(function(){
+      setTimeout(function(){
+      auth.addClass('content-hidden');
+      $('form-login').submit();
+      }, 300);
+      setTimeout(function(){
+      auth.addClass('disappear');
+    }, 800);
+    setTimeout(function(){
+      $('form-signin').submit();
+    }, 1000);
+    });
+
+    $('.submit-login').click(function(){
+      setTimeout(function(){
+      auth.addClass('content-hidden');
+      $('form-login').submit();
+      }, 300);
+      setTimeout(function(){
+      auth.addClass('disappear');
+    }, 800);
+    setTimeout(function(){
+      $('form-login').submit();
+    }, 1000);
+
     });
 
   }

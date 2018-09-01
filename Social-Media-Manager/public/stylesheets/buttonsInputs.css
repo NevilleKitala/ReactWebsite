@@ -13,6 +13,10 @@
   margin:auto;
 }
 
+.btn-long{
+  width:auto;
+}
+
 .btn:hover{
   background-color: white;
   transition: 2s ease;

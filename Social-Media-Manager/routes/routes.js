@@ -1,25 +1,24 @@
 // routes.js
 var nodeMailer = require("nodemailer");
+var ejs = require("ejs");
+var fs = require("fs");
 
 module.exports = function(app, passport) {
 
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
-        res.render('index.ejs'); // load the index.ejs file
-    });
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/home', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureRedirect : '/register', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
     app.post('/login', passport.authenticate('local-login', {
         successRedirect : '/home', // redirect to the secure profile section
-        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureRedirect : '/register', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
@@ -54,8 +53,11 @@ module.exports = function(app, passport) {
 
     app.get('/home', isLoggedIn, function(req, res) {
         res.render('home.ejs', {
-            user : req.user // get the user out of session and pass to template
+            user : req.user
+            // get the user out of session and pass to template
         });
+
+        current = 1;
     });
 
     app.get('/email', isLoggedIn,function(req, res) {
@@ -81,12 +83,16 @@ module.exports = function(app, passport) {
                   pass: 'maryland6987'
               }
           });
+
+          var compiled = ejs.compile(fs.readFileSync('./views/email.ejs', 'utf8'));
+          var html = compiled({ user : req.body.to});
+
           let mailOptions = {
               from: 'donotreply@gmail.com', // sender address
               to: req.body.to, // list of receivers
-              subject: req.body.subject, // Subject line
-              text: req.body.body, // plain text body
-              html: '<b>NodeJS Email Tutorial</b>' // html body
+              subject: "Get Started and authenticate your account " + req.body.subject, // Subject line
+              text: "Get Started and authenticate your account ", // plain text body
+              html:  html// html body
           };
 
           transporter.sendMail(mailOptions, (error, info) => {
@@ -94,7 +100,7 @@ module.exports = function(app, passport) {
               return console.log(error);
           }
           console.log('Message %s sent: %s', info.messageId, info.response);
-              res.render('index');
+          console.log(html);
           });
     });
 

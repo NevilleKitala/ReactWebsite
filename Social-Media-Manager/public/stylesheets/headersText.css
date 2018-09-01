@@ -27,6 +27,11 @@ a, a:hover ,a:visited, .disconnected{
   transition: 2s;
 }
 
+.option:hover > .logo{
+  transform: translate3d(0, -20px, 0);
+  text-shadow: 1px 20px 5px var(--color-shadow);
+}
+
 .dropdown:hover{
   font-size: 0.6em;
   text-decoration: none;
@@ -36,26 +41,30 @@ a, a:hover ,a:visited, .disconnected{
 }
 
 .selection .logo{
-  font-size: 3em;
-}
-
-.connect{
-  font-size: 0.55em;
+  font-size: 5em;
   text-align: center;
-  line-height: 2em;
+
 }
 
 .disconnected ,.disconnected:hover,.disconnected:visited{
   text-decoration: none;
 }
 
-.connected, .connected:hover, .connected:visited{
-  font-size: 0.9em;
-  line-height: 2.5em;
-  color: var(--color-connected);
-}
-
 .welcome .content-wrap .appear-text li{
   font-size: 3em;
   color: var(--color-text);
+}
+
+.option_title{
+  font-family: "Segoe UI";
+  font-weight: 700;
+  font-size: 2em;
+}
+
+.font-dark{
+  color: var(--color-text);
+}
+
+.font-light{
+  color: white;
 }

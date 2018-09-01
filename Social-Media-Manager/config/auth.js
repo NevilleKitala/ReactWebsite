@@ -18,9 +18,9 @@ module.exports = {
     },
 
     'googleAuth' : {
-        'clientID'      : '287345927343-9mbboinsc8skdt7sa1l306f4pti22mq6.apps.googleusercontent.com',
-        'clientSecret'  : 'AnDKrfrc49ccGxm_eRZ2Vhrx',
-        'callbackURL'   : 'http://localhost:3000/auth/google/callback'
+        'clientID'      : '287345927343-2n90fc2335b4kk2fccekq16f7lvbckf5.apps.googleusercontent.com',
+        'clientSecret'  : 'a0ea6F2uddM2KMXD2sRd5wQO',
+        'callbackURL'   : 'https://localhost:3000/auth/google/callback'
     },
 
     'instagramAuth' : {
