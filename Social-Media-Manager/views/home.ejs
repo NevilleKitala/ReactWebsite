@@ -77,14 +77,15 @@
         <div class = "option option_facebook">
           <a class="logo transparent fab fa-facebook-f"></a>
           <div class = "manage font-dark">
-            <a href = "/#facebook">
-              <h5 class><% if(user.facebook.id){ %>
+            <% if(user.facebook.id){ %>
+            <a href = "/facebook_accounts" class = "activate-Dashboard">
                 Manage
-              <% }else{ %>
-                connect
-              <% } %>
-            </h5>
-          </a>
+            </a>
+            <% }else{ %>
+              <a href = "/auth/facebook">
+                Connect
+            </a>
+            <% } %>
           </div>
         </div>
       </div>
@@ -99,14 +100,15 @@
         <div class = "option option_instagram">
           <a class="logo transparent fab fa-instagram" ></a>
           <div class = "manage font-dark">
-            <a href = "/#facebook">
-              <h5 class><% if(user.facebook.id){ %>
+            <% if(user.instagram.id){ %>
+            <a href = "/instagram_feed" class = "activate-Dashboard">
                 Manage
-              <% }else{ %>
-                connect
-              <% } %>
-            </h5>
-          </a>
+            </a>
+            <% }else{ %>
+              <a href = "/auth/instagram">
+                Connect
+            </a>
+            <% } %>
           </div>
         </div>
       </div>
@@ -120,14 +122,15 @@
         <div class = "option option_twitter">
           <a class="logo transparent fab fa-twitter"></a>
           <div class = "manage font-dark">
-            <a href = "/#facebook">
-              <h5 class><% if(user.facebook.id){ %>
+            <% if(user.twitter.id){ %>
+            <a href = "/twitter">
                 Manage
-              <% }else{ %>
-                connect
-              <% } %>
-            </h5>
-          </a>
+            </a>
+            <% }else{ %>
+              <a href = "/auth/twitter">
+                Connect
+            </a>
+            <% } %>
           </div>
         </div>
       </div>
@@ -141,14 +144,15 @@
         <div class = "option option_google">
           <a class="logo transparent fab fa-google"></a>
           <div class = "manage font-dark">
-            <a href = "/#facebook">
-              <h5 class><% if(user.facebook.id){ %>
+            <% if(user.google.id){ %>
+            <a href = "/google">
                 Manage
-              <% }else{ %>
-                connect
-              <% } %>
-            </h5>
-          </a>
+            </a>
+            <% }else{ %>
+              <a href = "/auth/google">
+                Connect
+            </a>
+            <% } %>
           </div>
         </div>
       </div>

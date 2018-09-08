@@ -1,5 +1,8 @@
 var request = require('request-promise');
 
+var configAuth = require('../config/auth');
+var configAuth = require('../models/fbpages');
+
 module.exports = function(app, passport) {
 
   // you'll need to have requested 'user_about_me' permissions
@@ -10,30 +13,8 @@ module.exports = function(app, passport) {
   var results;
 
 //Get user Feed
-  app.get('/facebook_feed', isLoggedIn, (req, res) => {
+  app.get('/facebook_accounts', isLoggedIn, (req, res) => {
 
-  const options = {
-    method: 'GET',
-    uri: `https://graph.facebook.com/v2.8/${req.user.facebook.id}/feed`,
-    qs: {
-        access_token: req.user.facebook.token,
-        fields      : userFieldSet
-    }
-  };
-
-  request(options)
-  .then(fbRes => {
-    res.render('Main.ejs', {
-        results: JSON.parse(fbRes) // get the user out of session and pass to template
-    });
-  })
-
-
-});
-
-//get user account information
-//Get user Feed
-  app.get('/facebook_account', isLoggedIn, (req, res) => {
   const options = {
     method: 'GET',
     uri: `https://graph.facebook.com/v2.8/${req.user.facebook.id}/accounts`,
@@ -41,15 +22,53 @@ module.exports = function(app, passport) {
         access_token: req.user.facebook.token
     }
   };
+
   request(options)
   .then(fbRes => {
-    res.render('Main.ejs', {
-        results: JSON.parse(fbRes) // get the user out of session and pass to template
+    res.render('facebook.ejs', {
+        results: JSON.parse(fbRes),
+        user : req.user
+         // get the user out of session and pass to template
     });
-    console.log(JSON.parse(fbRes).data);
+    console.log(JSON.parse(fbRes));
   })
 });
 
+app.post('/facebook_feed', isLoggedIn, (req, res) => {
+
+const options = {
+  method: 'GET',
+  uri: `https://graph.facebook.com/v2.8/${req.body.account_id}/feed`,
+  qs: {
+      access_token: req.user.facebook.token,
+      fields      : userFieldSet
+  }
+};
+
+request(options)
+.then(fbRes => {
+  res.render('facebookdash.ejs', {
+      results: JSON.parse(fbRes),
+      user : req.user
+       // get the user out of session and pass to template
+  });
+  console.log(JSON.parse(fbRes));
+})
+});
+
+app.post('/facebook_post', isLoggedIn, (req, res) => {
+
+  const postTextOptions = {
+    method: 'POST',
+    uri: `https://graph.facebook.com/v2.8/${req.body.id}/feed`,
+    qs: {
+      access_token: req.body.token,
+      message: req.body.to
+    }
+  };
+  request(postTextOptions);
+  res.redirect('/facebook_feed');
+});
 
 };
 

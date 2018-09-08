@@ -7,9 +7,11 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var PinterestStrategy = require('passport-pinterest-oauth').OAuth2Strategy;
 var InstagramStrategy = require('passport-instagram').Strategy;
+var request = require('request-promise');
 
 // load up the user model
 var User            = require('../models/user');
+var FBPage          = require('../models/fbpages');
 
 // load the auth variables
 var configAuth = require('./auth');
@@ -166,7 +168,7 @@ module.exports = function(passport) {
                         newUser.facebook.id    = profile.id; // set the users facebook id
                         newUser.facebook.token = token; // we will save the token that facebook provides to the user
                         newUser.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName; // look at the passport user profile to see how names are returned
-                        newUser.facebook.email = profile.emails[0].value; // facebook can return multiple emails so we'll take the first
+                        newUser.facebook.email = profile.email; // facebook can return multiple emails so we'll take the first
 
                         // save our user to the database
                         newUser.save(function(err) {
@@ -183,19 +185,55 @@ module.exports = function(passport) {
             } else {
                 // user already exists and is logged in, we have to link accounts
                 var user            = req.user; // pull the user out of the session
+                const pageFieldSet = 'name, category, link, picture, is_verified';
 
                 // update the current users facebook credentials
                 user.facebook.id    = profile.id;
                 user.facebook.token = token;
                 user.facebook.name  = profile.name.givenName + ' ' + profile.name.familyName;
-                user.facebook.email = profile.emails[0].value;
+                user.facebook.email = profile.email;
 
-                // save the user
+                const options = {
+                  method: 'GET',
+                  uri: `https://graph.facebook.com/v2.8/${profile.id}/accounts`,
+                  qs: {
+                      access_token: token
+                  }
+                };
+
+                request(options)
+                .then(fbRes => {
+                  (JSON.parse(fbRes)).data.forEach(elem => {
+                    FBPage.findOne({ 'pageid' : elem.id.id }, function(err, page) {
+                      if(page){
+
+                      }else{
+                        var fbpage = new FBPage();
+
+                        fbpage.page.userid = user.local.id;
+                        fbpage.page.token = elem.access_token;
+                        fbpage.page.category = elem.category;
+                        fbpage.page.pageid = elem.id;
+                        fbpage.page.name = elem.name;
+
+                        fbpage.save(function(err) {
+                            if (err)
+                                throw err;
+                            return done(null, user);
+                        });
+                      }
+                    });
+                  });
+
+                  console.log(JSON.parse(fbRes));
+                });
+
                 user.save(function(err) {
                     if (err)
                         throw err;
                     return done(null, user);
                 });
+
             }
 
         });

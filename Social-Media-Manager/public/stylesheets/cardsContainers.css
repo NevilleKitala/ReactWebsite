@@ -106,6 +106,29 @@
   left: 2500px;
 }
 
+.pos-7{
+  left: 2500px;
+}
+.pos-8{
+  left: 3000px;
+}
+
+.pos-9{
+  left: 3500px;
+}
+
+.pos-10{
+  left: 4000px;
+}
+
+.pos-11{
+  left: 4500px;
+}
+
+.pos-12{
+  left: 5000px;
+}
+
 .option_title{
   position: absolute;
   width: 100%;
@@ -121,13 +144,17 @@
 }
 
 .manage{
-  padding: 10px 170px;
+  color: var(--color-text);
+  font-size: 0.7em;
+  text-align: center;
   background-color: white;
   position: absolute;
   bottom: 50px;
-  right: 50px;
   opacity: 0;
   transition: all 0.3s ease-in-out;
+  padding: 20px 0;
+  margin: 0 50px;
+  width: 400px;
 }
 
 .option:hover > .manage {

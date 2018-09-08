@@ -17,9 +17,9 @@ body{
 .auth p {
   font-size: 0.5em;
 }
-a, a:hover ,a:visited, .disconnected{
+a, a:hover ,a:visited {
   text-decoration: none;
-  color: var(--color-disconnected);
+  color: var(--color-text);
 }
 
 .dropdown{

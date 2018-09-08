@@ -3,8 +3,11 @@ $(function(){
   var auth = $('.auth');
   var selection = $('.selection');
   var option = $('.logo');
+  var instapath = "https://localhost:3000/instagram_feed";
+  var home = "https://localhost:3000/home";
+  var facebookfeed = "https://localhost:3000/facebook_accounts";
 
-  if (location.href == "https://localhost:3000/home"){
+  if (location.href == instapath || location.href == home || location.href == facebookfeed){
   function SplashScreenIntro() {
     setTimeout(function(){
       welcome.removeClass('content-hidden');
@@ -25,13 +28,19 @@ $(function(){
   function loadCardsRecursive() {
   setTimeout(function(){
     selection.removeClass("hidden")
-  }, 400 ,loadLogos());
+  }, 400 ,loadLogosRecursive());
 }
+
+    function loadLogosRecursive(){
+      setTimeout(function(){
+        option.removeClass("transparent")
+      }, 1000);
+    }
 
     function loadLogos(){
       setTimeout(function(){
         option.removeClass("transparent")
-      }, 2500);
+      }, 5000);
     }
 
     if(!Cookies.get("visits")){

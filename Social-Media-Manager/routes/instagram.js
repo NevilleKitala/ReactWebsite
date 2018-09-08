@@ -11,7 +11,8 @@ module.exports = function(app, passport) {
       ig.user_media_recent((req.user.instagram.token).split('.')[0], function(err, result, pagination, remaining, limit) {
           if(err) res.json(err);
        // pass the json file gotten to our ejs template
-          res.render('instagram.ejs', { instagram : result });
+          res.render('instagram.ejs', { instagram : result,
+          user : req.user });
           console.log(result);
       });
   });

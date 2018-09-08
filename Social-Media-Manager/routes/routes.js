@@ -26,6 +26,10 @@ module.exports = function(app, passport) {
         res.redirect('/register'); // load the index.ejs file
     });
 
+    app.get('/home#_=_', function(req, res) {
+        res.redirect('/home'); // load the index.ejs file
+    });
+
 
     // =====================================
     // Registration ========================
@@ -85,7 +89,11 @@ module.exports = function(app, passport) {
           });
 
           var compiled = ejs.compile(fs.readFileSync('./views/email.ejs', 'utf8'));
-          var html = compiled({ user : req.body.to});
+          var html = compiled({
+              name : req.user.name,
+              email : req.user.email,
+              password: req.user.password
+            });
 
           let mailOptions = {
               from: 'donotreply@gmail.com', // sender address
@@ -109,7 +117,7 @@ module.exports = function(app, passport) {
     // =====================================
     // route for facebook authentication and login
     app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['public_profile', 'manage_pages']
+    scope: ['public_profile', 'manage_pages', 'publish_pages', 'read_page_mailboxes', 'pages_show_list']
     }));
 
     // handle the callback after facebook has authenticated the user

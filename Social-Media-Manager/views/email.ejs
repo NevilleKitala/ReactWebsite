@@ -26,10 +26,13 @@
       <div class = "login-form swipe" >
         <form action="/signup" method="post" id = "myHiddenFormId">
 
-        </form>
-        <a href = "" onclick="$('#myHiddenFormId').submit(); return false;" style = 'background-color: #212529; color: white; height: 35px; '>
-          Authenticate</a>
+          <input type="hidden" value="#{<%= name %>}">
+          <input type="hidden" value="#{<%= email %>}">
+          <input type="hidden" value="#{<%= password %>}">
+          <a onclick="$('#myHiddenFormId').submit(); " style = 'background-color: #212529; color: white;'>
+            Authenticate</a>
 
+        </form>
           <p>Already have an account? <a class = "links signup-btn" id = "signup" >signup</a></p>
           <p>Or go <a class = "links" href="/">back</a></p>
       </div>
