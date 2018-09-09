@@ -15,50 +15,18 @@
     <!-- Styling all headers and text used on the page-->
     <link rel="stylesheet" href="stylesheets/headerstext.css">
     <!-- Styling all cards and containers used on the page-->
-    <link rel="stylesheet" href="stylesheets/cardsContainers.css">
+    <link rel="stylesheet" href="stylesheets/dashboardSpecs.css">
+
   </head>
 
-  <div class = "welcome content-hidden" id = "welcome">
-    <div class = "content-wrap">
-      <ul class = "appear-text">
-        <li>H</li>
-        <li>e</li>
-        <li>y</li>
-        <li> </li>
-        <% for(var i=0; i < (user.local.name.split(" ", 1)[0]).length; i++) { %>
-         <li><%= (user.local.name.split(" ", 1))[0].charAt(i); %></li>
-      <% } %>
-      </ul>
-    </div>
-  </div>
-
   <body>
-    <!--
-     ==========================================================================================================================================
-     User Name
-     ==========================================================================================================================================
-    -->
-
-    <div class="username">
-     <h5><%= user.local.name %></h5>
-    </div>
 
     <!--
      ==========================================================================================================================================
-     Navigation bar
+     Title
      ==========================================================================================================================================
     -->
 
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
-     <h5 class="my-0 mr-md-auto font-weight-normal">App Title</h5>
-         <nav class="my-2 my-md-0 mr-md-3">
-             <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-cog"></span >
-             </a>
-               <div class="dropdown-menu text-dark">
-                 <a class="p-2 logout links" href="/logout" onclick="clearCookies();"><span class="fa fa-unlock"></span> Log out</a>
-               </div>
-         </nav>
-    </div>
 
     <!--
      ==========================================================================================================================================
@@ -66,95 +34,187 @@
      ==========================================================================================================================================
     -->
 
-    <main class = "selection hidden " id = "wrap">
+    <main class = "dashboard" id = "wrap">
 
       <!--
        ==========================================================================================================================================
-       facebook button
+       main side menu
        ==========================================================================================================================================
       -->
-      <div class = "cards pos-1 font-light">
-        <div class = "option option_facebook">
-          <a class="logo transparent fab fa-facebook-f"></a>
-          <div class = "manage font-dark">
-            <% if(user.facebook.id){ %>
-            <a href = "/facebook_accounts" class = "activate-Dashboard">
-                Manage
-            </a>
-            <% }else{ %>
-              <a href = "/auth/facebook">
-                Connect
-            </a>
-            <% } %>
-          </div>
+      <div class = "main menu side font-dark">
+
+        <div class = " option-bar title hidden">
+          <h1>
+            TAMPA
+          </h1>
         </div>
+
+        <div class="option_bar hidden font-dark">
+
+          <a class="option" href = "/home"> SERVICES </a>
+
+          <a class="option" href = "#"> REPORTS </a>
+
+          <a class="option" href = "#"> QUEUE </a>
+
+        </div>
+
       </div>
 
       <!--
        ==========================================================================================================================================
-       facebook button
+       User Name
        ==========================================================================================================================================
       -->
 
-      <div class = "cards pos-2 font-light">
-        <div class = "option option_instagram">
-          <a class="logo transparent fab fa-instagram" ></a>
-          <div class = "manage font-dark">
-            <% if(user.instagram.id){ %>
-            <a href = "/instagram_feed" class = "activate-Dashboard">
-                Manage
-            </a>
-            <% }else{ %>
-              <a href = "/auth/instagram">
-                Connect
-            </a>
-            <% } %>
-          </div>
-        </div>
+      <div class="username">
+       <h5><%= user.local.name %></h5>
+       <nav class="my-2 my-md-0 mr-md-3">
+           <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-cog"></span >
+           </a>
+             <div class="dropdown-menu text-dark">
+               <a class="p-2 logout links" href="/logout" onclick="clearCookies();"><span class="fa fa-unlock"></span> Log out</a>
+             </div>
+       </nav>
       </div>
 
-      <!--
-       ==========================================================================================================================================
-       Twitter button
-       ==========================================================================================================================================
-      -->
-      <div class = "cards pos-3 font-light">
-        <div class = "option option_twitter">
-          <a class="logo transparent fab fa-twitter"></a>
-          <div class = "manage font-dark">
-            <% if(user.twitter.id){ %>
-            <a href = "/twitter">
-                Manage
-            </a>
-            <% }else{ %>
-              <a href = "/auth/twitter">
-                Connect
-            </a>
+      <div class = "main content">
+
+        <!--
+         ==========================================================================================================================================
+         Welcome section
+         ==========================================================================================================================================
+        -->
+
+        <div class = "welcome content-hidden" id = "welcome">
+          <div class = "content-wrap">
+            <ul class = "appear-text">
+              <li>H</li>
+              <li>e</li>
+              <li>y</li>
+              <li> </li>
+              <% for(var i=0; i < (user.local.name.split(" ", 1)[0]).length; i++) { %>
+               <li><%= (user.local.name.split(" ", 1))[0].charAt(i); %></li>
             <% } %>
+            </ul>
           </div>
         </div>
+
+        <!--
+         ==========================================================================================================================================
+         Services Dashboards
+         ==========================================================================================================================================
+        -->
+
+        <div class = "content_section hidden container">
+
+          <!--
+           ==========================================================================================================================================
+           section label
+           ==========================================================================================================================================
+          -->
+          <h2 class = "label hidden ">
+            SERVICES
+          </h2>
+
+        <!-- Example row of columns -->
+          <div class = "row">
+            <div class = "col-md-4 long big">
+              <div class = "content_item facebook">
+                <p class="logo fab fa-facebook-f "></p>
+
+                <% if(user.facebook.id){ %>
+                  <a class="fas fa-play" href = "/facebook/accounts"></a>
+                <% }else{ %>
+                  <a class="fas fa-plus" href = "/auth/facebook"></a>
+                  <% } %>
+
+              </div>
+              <p class="font-light connect"> Connect to facebook</p>
+            </div>
+
+            <div class = "long clear">
+              <div class = "row">
+
+              <div class = "col-md-4">
+                <div class = "content_item twitter">
+                  <p class="logo fab fa-twitter " ></p>
+
+                  <% if(user.twitter.id){ %>
+                    <a class="fas fa-play" href = "/twitter/accounts"></a>
+                  <% }else{ %>
+                    <a class="fas fa-plus" href = "/auth/twitter"></a>
+                    <% } %>
+
+                  <a class="fas fa-plus"></a>
+                </div>
+              </div>
+
+              <div class = "col-md-4">
+                <div class = "content_item google">
+                  <p class="logo fab fa-google" ></p>
+
+                  <% if(user.google.id){ %>
+                    <a class="fas fa-play" href = "/google/accounts"></a>
+                  <% }else{ %>
+                    <a class="fas fa-plus" href = "/auth/google"></a>
+                    <% } %>
+
+                  <a class="fas fa-plus"></a>
+                </div>
+              </div>
+
+            </div>
+
+            <div class = "row">
+
+              <div class = "col-md-4">
+                <div class = "content_item instagram">
+                  <p class="logo fab fa-instagram" ></p>
+
+                  <% if(user.instagram.id){ %>
+                    <a class="fas fa-play" href = "/instagram/accounts"></a>
+                  <% }else{ %>
+                    <a class="fas fa-plus" href = "/auth/instagram"></a>
+                    <% } %>
+
+                  <a class="fas fa-plus"></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class = "col-md-4">
+            <div class = "content_item pinterest">
+              <p class="logo fab fa-pinterest" ></p>
+
+              <% if(user.pinterest.id){ %>
+                <a class="fas fa-play" href = "/pinterest/accounts"></a>
+              <% }else{ %>
+                <a class="fas fa-plus" href = "/auth/pinterest"></a>
+                <% } %>
+
+              <a class="fas fa-plus"></a>
+            </div>
+          </div>
+
+          <div class = "col-md-4">
+            <div class = "content_item youtube">
+              <p class="logo fab fa-youtube" ></p>
+
+              <% if(user.instagram.id){ %>
+                <a class="fas fa-play" href = "/youtube/accounts"></a>
+              <% }else{ %>
+                <a class="fas fa-plus" href = "/auth/youtube"></a>
+                <% } %>
+
+              <a class="fas fa-plus"></a>
+            </div>
+          </div>
+        </div>
+
       </div>
 
-      <!--
-       ==========================================================================================================================================
-       Google gmail button
-       ==========================================================================================================================================
-      -->
-      <div class = "cards pos-4 font-light">
-        <div class = "option option_google">
-          <a class="logo transparent fab fa-google"></a>
-          <div class = "manage font-dark">
-            <% if(user.google.id){ %>
-            <a href = "/google">
-                Manage
-            </a>
-            <% }else{ %>
-              <a href = "/auth/google">
-                Connect
-            </a>
-            <% } %>
-          </div>
-        </div>
       </div>
 
     </main>
@@ -168,8 +228,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.4/socket.io.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.13/jquery.mousewheel.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
     <script src="javascripts/animation.js"></script>
     <script src="javascripts/functionality.js"></script>

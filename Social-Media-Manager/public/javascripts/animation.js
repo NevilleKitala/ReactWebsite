@@ -1,54 +1,72 @@
 $(function(){
   var welcome = $('.welcome');
+  var dashboardcontent = $('.content');
   var auth = $('.auth');
   var selection = $('.selection');
   var option = $('.logo');
+  var option_bar = $('.option_bar');
+  var content_section = $('.content_section');
   var instapath = "https://localhost:3000/instagram_feed";
   var home = "https://localhost:3000/home";
-  var facebookfeed = "https://localhost:3000/facebook_accounts";
+  var facebookfeed = "https://localhost:3000/facebook/accounts";
 
   if (location.href == instapath || location.href == home || location.href == facebookfeed){
+
   function SplashScreenIntro() {
     setTimeout(function(){
       welcome.removeClass('content-hidden');
     }, 500, SplashScreenOutro());
   }
+
   function SplashScreenOutro() {
     setTimeout(function(){
       welcome.addClass("disappear")
-    }, 3000,loadCards(4000));
+    }, 3000, reveal());
   }
 
-    function loadCards() {
+  function reveal() {
     setTimeout(function(){
-      selection.removeClass("hidden")
-    }, 4000 ,loadLogos());
+      dashboardcontent.addClass("reveal");
+    }, 4500,optionBar());
   }
 
-  function loadCardsRecursive() {
-  setTimeout(function(){
-    selection.removeClass("hidden")
-  }, 400 ,loadLogosRecursive());
-}
+  function revealInstant() {
+    setTimeout(function(){
+      dashboardcontent.addClass("reveal");
+    }, 500, optionBarInstant());
+  }
 
-    function loadLogosRecursive(){
-      setTimeout(function(){
-        option.removeClass("transparent")
-      }, 1000);
-    }
+  function optionBar() {
+    setTimeout(function(){
+      option_bar.removeClass("hidden");
+    }, 5500, contentSection());
+  }
 
-    function loadLogos(){
-      setTimeout(function(){
-        option.removeClass("transparent")
-      }, 5000);
-    }
+  function optionBarInstant() {
+    setTimeout(function(){
+      option_bar.removeClass("hidden");
+    }, 1500, contentSectionInstant());
+  }
+
+  function contentSection() {
+    setTimeout(function(){
+      content_section.removeClass("hidden");
+    }, 7000);
+  }
+
+  function contentSectionInstant() {
+    setTimeout(function(){
+      content_section.removeClass("hidden");
+    }, 3000);
+  }
+
 
     if(!Cookies.get("visits")){
       SplashScreenIntro();
       Cookies.set("visits", 1);
     }
     else {
-      loadCardsRecursive();
+      revealInstant();
     }
   }
 

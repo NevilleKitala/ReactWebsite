@@ -2,12 +2,34 @@
     --color-connected: #42b72a;
     --color-disconnected: #999;
     --color-text: #212529;
+    --color-facebook: #2E4471;
+    --color-instagramgrad-1: #582BD0;
+    --color-instagramgrad-2: #AA3499;
+    --color-instagramgrad-3: #DB7A7E;
+    --color-twitter: #38A8E8;
+    --color-google: #DD4D42;
+    --color-pinterest: #BD081C;
+    --color-youtube: #E62117;
+    --color-google: #EA4335;
 }
 
 body{
   font-size: 2em;
-  font-family: 'Abel';
+  font-family: 'Roboto';
+  font-weight: 200;
+}
 
+.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+    font-weight: 300;
+}
+
+.title h1{
+  font-size: 0.8em;
+  font-weight: 700;
+}
+
+.label{
+  font-weight: 500;
 }
 
 .auth{
@@ -17,9 +39,15 @@ body{
 .auth p {
   font-size: 0.5em;
 }
+
 a, a:hover ,a:visited {
   text-decoration: none;
   color: var(--color-text);
+}
+
+.option_bar a{
+  font-size: 0.5em;
+  font-weight: 400;
 }
 
 .dropdown{
@@ -36,15 +64,6 @@ a, a:hover ,a:visited {
   font-size: 0.6em;
   text-decoration: none;
 }
-.selection{
-  color: white;
-}
-
-.selection .logo{
-  font-size: 5em;
-  text-align: center;
-
-}
 
 .disconnected ,.disconnected:hover,.disconnected:visited{
   text-decoration: none;
@@ -55,16 +74,24 @@ a, a:hover ,a:visited {
   color: var(--color-text);
 }
 
-.option_title{
-  font-family: "Segoe UI";
-  font-weight: 700;
-  font-size: 2em;
-}
-
 .font-dark{
   color: var(--color-text);
 }
 
 .font-light{
+  color: white;
+}
+
+.font-grey a{
+  font-size: 0.8em;
+  color: var(--color-disconnected);
+}
+
+.col-md-4 p{
+  font-size: 0.7em;
+}
+
+.col-md-4 .logo{
+  font-size: 2.5em;
   color: white;
 }

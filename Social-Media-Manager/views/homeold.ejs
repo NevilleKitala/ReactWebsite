@@ -39,8 +39,25 @@
      ==========================================================================================================================================
     -->
 
-    <div class="username hidden">
+    <div class="username">
      <h5><%= user.local.name %></h5>
+    </div>
+
+    <!--
+     ==========================================================================================================================================
+     Navigation bar
+     ==========================================================================================================================================
+    -->
+
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3">
+     <h5 class="my-0 mr-md-auto font-weight-normal">App Title</h5>
+         <nav class="my-2 my-md-0 mr-md-3">
+             <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-cog"></span >
+             </a>
+               <div class="dropdown-menu text-dark">
+                 <a class="p-2 logout links" href="/logout" onclick="clearCookies();"><span class="fa fa-unlock"></span> Log out</a>
+               </div>
+         </nav>
     </div>
 
     <!--
@@ -49,7 +66,29 @@
      ==========================================================================================================================================
     -->
 
-    <main class = "dashboard hidden" id = "wrap">
+    <main class = "selection hidden " id = "wrap">
+
+      <!--
+       ==========================================================================================================================================
+       facebook button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards pos-1 font-light">
+        <div class = "option option_facebook">
+          <a class="logo transparent fab fa-facebook-f"></a>
+          <div class = "manage font-dark">
+            <% if(user.facebook.id){ %>
+            <a href = "/facebook_accounts" class = "activate-Dashboard">
+                Manage
+            </a>
+            <% }else{ %>
+              <a href = "/auth/facebook">
+                Connect
+            </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
 
       <!--
        ==========================================================================================================================================
@@ -57,6 +96,66 @@
        ==========================================================================================================================================
       -->
 
+      <div class = "cards pos-2 font-light">
+        <div class = "option option_instagram">
+          <a class="logo transparent fab fa-instagram" ></a>
+          <div class = "manage font-dark">
+            <% if(user.instagram.id){ %>
+            <a href = "/instagram_feed" class = "activate-Dashboard">
+                Manage
+            </a>
+            <% }else{ %>
+              <a href = "/auth/instagram">
+                Connect
+            </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!--
+       ==========================================================================================================================================
+       Twitter button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards pos-3 font-light">
+        <div class = "option option_twitter">
+          <a class="logo transparent fab fa-twitter"></a>
+          <div class = "manage font-dark">
+            <% if(user.twitter.id){ %>
+            <a href = "/twitter">
+                Manage
+            </a>
+            <% }else{ %>
+              <a href = "/auth/twitter">
+                Connect
+            </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!--
+       ==========================================================================================================================================
+       Google gmail button
+       ==========================================================================================================================================
+      -->
+      <div class = "cards pos-4 font-light">
+        <div class = "option option_google">
+          <a class="logo transparent fab fa-google"></a>
+          <div class = "manage font-dark">
+            <% if(user.google.id){ %>
+            <a href = "/google">
+                Manage
+            </a>
+            <% }else{ %>
+              <a href = "/auth/google">
+                Connect
+            </a>
+            <% } %>
+          </div>
+        </div>
+      </div>
 
     </main>
 

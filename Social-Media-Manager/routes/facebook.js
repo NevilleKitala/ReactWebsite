@@ -13,7 +13,7 @@ module.exports = function(app, passport) {
   var results;
 
 //Get user Feed
-  app.get('/facebook_accounts', isLoggedIn, (req, res) => {
+  app.get('/facebook/accounts', isLoggedIn, (req, res) => {
 
   const options = {
     method: 'GET',
