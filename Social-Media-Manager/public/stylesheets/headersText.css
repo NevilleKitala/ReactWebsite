@@ -47,7 +47,7 @@ a, a:hover ,a:visited {
 
 .option_bar a{
   font-size: 0.5em;
-  font-weight: 400;
+  font-weight: 300;
 }
 
 .dropdown{
@@ -93,5 +93,32 @@ a, a:hover ,a:visited {
 
 .col-md-4 .logo{
   font-size: 2.5em;
+  color: white;
+}
+
+.message{
+  font-size: 0.6em;
+}
+
+.story{
+  font-weight: bold;
+}
+
+.right{
+  text-align: right;
+  font-size: 0.5em;
+}
+
+.message .right a{
+  text-align: left;
+}
+
+a.left{
+  text-align: left;
+  font-size: 0.5em;
+  color: var(--color-disconnected);
+}
+
+.btn{
   color: white;
 }

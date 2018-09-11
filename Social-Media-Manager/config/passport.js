@@ -301,7 +301,7 @@ module.exports = function(passport) {
                user.twitter.id    = profile.id;
                user.twitter.token = token;
                user.twitter.name  = profile.username;
-               user.twitter.email = profile.displayName;
+               user.twitter.displayName = profile.displayName;
 
                // save the user
                user.save(function(err) {

@@ -9,13 +9,13 @@
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
     <!-- Styling all cards and containers used on the page-->
-    <link rel="stylesheet" href="stylesheets/general.css">
+    <link rel="stylesheet" href="../stylesheets/general.css">
     <!-- Styling all buttons and input boxes used on the page-->
-    <link rel="stylesheet" href="stylesheets/buttonsinputs.css">
+    <link rel="stylesheet" href="../stylesheets/buttonsinputs.css">
     <!-- Styling all headers and text used on the page-->
-    <link rel="stylesheet" href="stylesheets/headerstext.css">
+    <link rel="stylesheet" href="../stylesheets/headerstext.css">
     <!-- Styling all cards and containers used on the page-->
-    <link rel="stylesheet" href="stylesheets/dashboardSpecs.css">
+    <link rel="stylesheet" href="../stylesheets/dashboardSpecs.css">
 
   </head>
 
@@ -78,7 +78,7 @@
        </nav>
       </div>
 
-      <div class = "main content">
+      <div class = "main content feed">
 
         <!--
          ==========================================================================================================================================
@@ -113,100 +113,129 @@
            section label
            ==========================================================================================================================================
           -->
-          <h2 class = "label hidden ">
-            SERVICES
+          <h2 class = "label">
+            FEED
           </h2>
 
-        <!-- Example row of columns -->
-          <div class = "row">
-            <div class = "col-md-4 long big">
-              <div class = "content_item facebook">
-                <p class="logo fab fa-facebook-f "></p>
+          <% for(var i=0; i < results.data.length; i++) {%>
+            <% if(results.data[i].picture == null){ %>
+              <a class = "clickable" href = "<%= results.data[i].id %>">
+                <div class="row post">
 
-                <% if(user.facebook.id){ %>
-                  <a class="fas fa-play" href = "/facebook/accounts"></a>
-                <% }else{ %>
-                  <a class="fas fa-plus" href = "/auth/facebook"></a>
+                  <div class=" navbar-collapse" id="navbarsExample02">
+
+                    <% if(results.data[i].story != null){ %>
+                      <p class = "complete-length story">
+                        <%= results.data[i].story %>
+                      </p>
+                    <% } %>
+
+                    <p class = "complete-length message">
+                      <%= results.data[i].message %>
+                    </p>
+
+                    <div class="time right">
+                      <p>
+                        <%= results.data[i].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] %>
+                        :
+                        <%= results.data[i].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1] %>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            <% } else { %>
+              <a class = "clickable" href = "<%= results.data[i].id %>" id="post">
+                <div class = "row post">
+
+                  <% if(results.data[i].story != null){ %>
+                    <p class = "complete-length story">
+                      <%= results.data[i].story %>
+                    </p>
                   <% } %>
 
-              </div>
-              <p class="font-light connect"> Connect to facebook</p>
-            </div>
-
-            <div class = "long clear">
-              <div class = "row">
-
-              <div class = "col-md-4">
-                <div class = "content_item twitter">
-                  <p class="logo fab fa-twitter " ></p>
-
-                  <% if(user.twitter.id){ %>
-                    <a class="fas fa-play" href = "/twitter/accounts"></a>
-                  <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/twitter"></a>
+                  <% for(var j=0; j < results.data[i].attachments.data.length; j++) {%>
+                    <% if(results.data[i].attachments.data[j].subattachments != null){ %>
+                      <% for(var k=0; k < results.data[i].attachments.data[j].subattachments.data.length; k++) {%>
+                      <div class = "col-md-4">
+                        <div class = "content_item">
+                          <img src = "<%= results.data[i].attachments.data[j].subattachments.data[k].media.image.src %>">
+                        </div>
+                      </div>
                     <% } %>
-                </div>
-              </div>
-
-              <div class = "col-md-4">
-                <div class = "content_item google">
-                  <p class="logo fab fa-google" ></p>
-
-                  <% if(user.google.id){ %>
-                    <a class="fas fa-play" href = "/google/accounts"></a>
-                  <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/google"></a>
-                    <% } %>
-                </div>
-              </div>
-
-            </div>
-
-            <div class = "row">
-
-              <div class = "col-md-4">
-                <div class = "content_item instagram">
-                  <p class="logo fab fa-instagram" ></p>
-
-                  <% if(user.instagram.id){ %>
-                    <a class="fas fa-play" href = "/instagram/accounts"></a>
-                  <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/instagram"></a>
-                    <% } %>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class = "col-md-4">
-            <div class = "content_item pinterest">
-              <p class="logo fab fa-pinterest" ></p>
-
-              <% if(user.pinterest.id){ %>
-                <a class="fas fa-play" href = "/pinterest/accounts"></a>
-              <% }else{ %>
-                <a class="fas fa-plus" href = "/auth/pinterest"></a>
+                  <% } else { %>
+                    <div class = "col-md-4 single">
+                      <div class = "content_item">
+                        <img src = "<%= results.data[i].attachments.data[j].media.image.src %>">
+                      </div>
+                    </div>
+                  <% } %>
                 <% } %>
-            </div>
-          </div>
+                <p class = "complete-length message">
+                  <%= results.data[i].message %>
+                </p>
+                <div class="time right">
+                  <p>
+                    <%= results.data[i].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] %>
+                    :
+                    <%= results.data[i].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1] %>
+                  </p>
+                </div>
+              </div>
+            </a>
+          <% } %>
+        <% } %>
 
-          <div class = "col-md-4">
-            <div class = "content_item youtube">
-              <p class="logo fab fa-youtube" ></p>
 
-              <% if(user.instagram.id){ %>
-                <a class="fas fa-play" href = "/youtube/accounts"></a>
-              <% }else{ %>
-                <a class="fas fa-plus" href = "/auth/youtube"></a>
+        <div class = "comment-section">
+          <% for(var i = 0; i < results.data.length; i++) { %>
+            <% if(results.data[i].comments != null) { %>
+              <div class = "comment-list hidden <%= results.data[i].id %>" >
+                <% for(var j = 0; j < results.data[i].comments.data.length; j++) { %>
+
+                  <% if(results.data[i].comments.data[j].message != null) { %>
+                    <div class = "message comments">
+
+                      <div class="time right">
+                        <p>
+                          <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] %>
+                          :
+                          <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1] %>
+                        </p>
+                      </div>
+
+                      <% if(results.data[i].comments.data[j].from != null) { %>
+                        <div class = "story small" >
+                          <%= results.data[i].comments.data[j].from.name %>
+                        </div>
+                      <% } %>
+
+                      <%= results.data[i].comments.data[j].message %>
+
+                      <a class = "left reply-btn" href = "<%= results.data[i].id %>-<%= j %>">
+                        reply
+                      </a>
+                        <div class = "reply reply-<%= results.data[i].id %>-<%= j %> hidden" >
+                          <form class="reply-form" action = "" method = "/post">
+                            <input class="form-control" value = "<%= results.data[i].comments.data[j].id" type="hidden" name = "comment-id">
+                            <input class="form-control" placeholder="Reply" type="text">
+                            <button class="btn my-2 my-sm-0" type="submit"><span class = "fas fa-location-arrow"></span></button>
+                          </form>
+
+
+                      </div>
+                    </div>
+                  <% } %>
                 <% } %>
-            </div>
-          </div>
+              </div>
+            <% } %>
+          <% } %>
         </div>
 
-      </div>
+
+
 
       </div>
-
     </main>
 
     <!--
@@ -219,8 +248,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script src="javascripts/animation.js"></script>
-    <script src="javascripts/functionality.js"></script>
+    <script src="../javascripts/animation.js"></script>
+    <script src="../javascripts/functionality.js"></script>
 
   </body>
 

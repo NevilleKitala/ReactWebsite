@@ -113,18 +113,23 @@
            section label
            ==========================================================================================================================================
           -->
-          <h2 class = "label hidden ">
+          <h2 class = "label ">
             FACEBOOK PAGES
           </h2>
 
         <!-- Example row of columns -->
           <div class = "row">
             <% for(var i=0; i < results.data.length; i++) {%>
-            <div class = "col-md-4">
+            <div class = "col-md-4 pages">
               <div class = "content_item facebook">
-                <p class="logo fab fa-facebook-f "></p>
+                <p class="logo fab fa-facebook-f " id = "<%= results.data[i].name %>" name = "account_id"></p>
 
-                <a class="fas fa-play" href = "#" onclick = "openPage();"></a>
+
+                <form action = "/facebook/feed" method="post">
+                  <input type = "hidden" value = "<%= results.data[i].id %>" name = "account_id"/>
+                  <input type = "hidden" value = "<%= results.data[i].access_token %>" name = "access_token"/>
+                  <button class="fas fa-play" type submit></button>
+                </form>
 
               </div>
               <% if(results.data[i].name != null){ %>

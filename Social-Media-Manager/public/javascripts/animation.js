@@ -1,4 +1,7 @@
 $(function(){
+  /*
+    variables to be used in the code
+  */
   var welcome = $('.welcome');
   var dashboardcontent = $('.content');
   var auth = $('.auth');
@@ -6,11 +9,13 @@ $(function(){
   var option = $('.logo');
   var option_bar = $('.option_bar');
   var content_section = $('.content_section');
-  var instapath = "https://localhost:3000/instagram_feed";
   var home = "https://localhost:3000/home";
-  var facebookfeed = "https://localhost:3000/facebook/accounts";
+  var register = "https://localhost:3000/register";
 
-  if (location.href == instapath || location.href == home || location.href == facebookfeed){
+  /*
+    Check if it is the home page of the facebook accounts page
+  */
+  if (location.href != register ){
 
   function SplashScreenIntro() {
     setTimeout(function(){
@@ -51,13 +56,26 @@ $(function(){
   function contentSection() {
     setTimeout(function(){
       content_section.removeClass("hidden");
-    }, 7000);
+    }, 6000);
   }
 
   function contentSectionInstant() {
     setTimeout(function(){
       content_section.removeClass("hidden");
-    }, 3000);
+    }, 2000);
+  }
+
+  function goToPage(href){
+    setTimeout(function(){
+      window.location = href;
+    }, 500);
+  }
+
+
+  function clearContent(href){
+    setTimeout(function(){
+      dashboardcontent.removeClass("reveal");
+    }, 9500, goToPage(href));
   }
 
 
@@ -68,9 +86,18 @@ $(function(){
     else {
       revealInstant();
     }
+/*
+      $('.fa-play').click(function(e){
+        e.preventDefault();
+        setTimeout(function(){
+          content_section.addClass("hidden");
+        }, 300, clearContent(this.href));
+
+      });
+*/
   }
 
-  else if (location.href == "https://localhost:3000/register") {
+  else if (location.href == register) {
     function SplashScreenIntro() {
       setTimeout(function(){
         auth.removeClass('content-hidden');
