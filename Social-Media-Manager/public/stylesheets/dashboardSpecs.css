@@ -276,7 +276,6 @@
   max-width: 100%;
   clear: both;
   width: 100%;
-  float: left;
 }
 
 .right{
@@ -383,16 +382,40 @@
 }
 
 .reply-form input{
-  border-radius: 5px 0  0 5px;
-  width: 70%;
+  width: 100%;
+  border-radius: 15px;
+  border: solid 3px whitesmoke;
   height: 40px;
   float:left;
 }
 
 .reply-form button{
-  border-radius: 0 5px 5px 0;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid var(--color-text);
+  background-color: transparent;
+  border: none;
+  color: var(--color-text);
+  position: relative;
+  top: -32.5px;
+  right: 10px;
+  width: fit-content;
+  float: right;
+  text-align: right;
+}
+
+.reply-form button :hover{
+  background-color: transparent;
+  border: none;
+  color: var(--color-disconnected);
+}
+
+.feed_container{
+  width: 90%;
+}
+
+.feed_container .row{
+  width: 100%;
+}
+
+.feed_container .col-4-md{
+  width: 33.33%;
+  max-width: 33.33%;
 }

@@ -182,3 +182,26 @@ body {
   border: transparent;
   margin-bottom: 20px;
 }
+
+.user_comment{
+  border: whitesmoke 1px solid;
+  padding: 15px;
+  border-radius: 5px;
+}
+
+.comment_reply{
+  font-size: 0.75em;
+  font-color: lightgrey;
+  padding: 10px;
+  margin-left: 20px;
+  background: whitesmoke;
+  border-radius: 20px;
+}
+
+.time {
+  float: right;
+}
+
+.resizable {
+  resize:horizontal;
+}

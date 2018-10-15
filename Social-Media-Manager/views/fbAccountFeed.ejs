@@ -82,31 +82,11 @@
 
         <!--
          ==========================================================================================================================================
-         Welcome section
-         ==========================================================================================================================================
-        -->
-
-        <div class = "welcome content-hidden" id = "welcome">
-          <div class = "content-wrap">
-            <ul class = "appear-text">
-              <li>H</li>
-              <li>e</li>
-              <li>y</li>
-              <li> </li>
-              <% for(var i=0; i < (user.local.name.split(" ", 1)[0]).length; i++) { %>
-               <li><%= (user.local.name.split(" ", 1))[0].charAt(i); %></li>
-            <% } %>
-            </ul>
-          </div>
-        </div>
-
-        <!--
-         ==========================================================================================================================================
          Services Dashboards
          ==========================================================================================================================================
         -->
 
-        <div class = "content_section hidden container">
+        <div class = "content_section hidden container feed_container resizable">
 
           <!--
            ==========================================================================================================================================
@@ -119,8 +99,8 @@
 
           <% for(var i=0; i < results.data.length; i++) {%>
             <% if(results.data[i].picture == null){ %>
-              <a class = "clickable" href = "<%= results.data[i].id %>">
-                <div class="row post">
+              <a class = "clickable" href = "<%= results.data[i].id %>" data-toggle="modal" data-target="#<%= results.data[i].id %>">
+                <div class="post">
 
                   <div class=" navbar-collapse" id="navbarsExample02">
 
@@ -145,8 +125,8 @@
                 </div>
               </a>
             <% } else { %>
-              <a class = "clickable" href = "<%= results.data[i].id %>" id="post">
-                <div class = "row post">
+              <a class = "clickable" href = "<%= results.data[i].id %>" id="post" data-toggle="modal" data-target="#<%= results.data[i].id %>">
+                <div class = "post">
 
                   <% if(results.data[i].story != null){ %>
                     <p class = "complete-length story">
@@ -156,13 +136,18 @@
 
                   <% for(var j=0; j < results.data[i].attachments.data.length; j++) {%>
                     <% if(results.data[i].attachments.data[j].subattachments != null){ %>
-                      <% for(var k=0; k < results.data[i].attachments.data[j].subattachments.data.length; k++) {%>
-                      <div class = "col-md-4">
-                        <div class = "content_item">
-                          <img src = "<%= results.data[i].attachments.data[j].subattachments.data[k].media.image.src %>">
+                      <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[0].media.image.src %>">
+                          </div>
+                          <% for(var k=1; k < results.data[i].attachments.data[j].subattachments.data.length; k++) {%>
+                            <div class="carousel-item">
+                              <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[k].media.image.src %>">
+                            </div>
+                          <% } %>
                         </div>
                       </div>
-                    <% } %>
                   <% } else { %>
                     <div class = "col-md-4 single">
                       <div class = "content_item">
@@ -184,56 +169,174 @@
               </div>
             </a>
           <% } %>
-        <% } %>
 
+          <% if(results.data[i].comments != null) { %>
+            <!-- Modal -->
+            <div class="modal fade" id="<%= results.data[i].id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Comments</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class = "comment-list hidden <%= results.data[i].id %>" >
+                      <div class = "message comments">
+                        <div class = "story">
+                          <% if(results.data[i].message) { %>
+                            <%= results.data[i].message %>
+                          <% } %>
 
-        <div class = "comment-section">
-          <% for(var i = 0; i < results.data.length; i++) { %>
-            <% if(results.data[i].comments != null) { %>
-              <div class = "comment-list hidden <%= results.data[i].id %>" >
-                <% for(var j = 0; j < results.data[i].comments.data.length; j++) { %>
+                          <% for(var j = 0; j < results.data[i].comments.data.length; j++) { %>
+                            <% if(results.data[i].picture != null){ %>
+                              <% if(results.data[i].attachments.data[j] != null){ %>
 
-                  <% if(results.data[i].comments.data[j].message != null) { %>
-                    <div class = "message comments">
-
-                      <div class="time right">
-                        <p>
-                          <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] %>
-                          :
-                          <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1] %>
-                        </p>
-                      </div>
-
-                      <% if(results.data[i].comments.data[j].from != null) { %>
-                        <div class = "story small" >
-                          <%= results.data[i].comments.data[j].from.name %>
+                                <% if(results.data[i].attachments.data[j].subattachments != null){ %>
+                                  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                      <div class="carousel-item active">
+                                        <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[0].media.image.src %>">
+                                      </div>
+                                      <% for(var k=1; k < results.data[i].attachments.data[j].subattachments.data.length; k++) {%>
+                                        <div class="carousel-item">
+                                          <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[k].media.image.src %>">
+                                        </div>
+                                      <% } %>
+                                    </div>
+                                  </div>
+                                <% } else { %>
+                                  <% if(results.data[i].attachments.data[j].media != null) { %>
+                                  <% } %>
+                                <% } %>
+                              <% } %>
+                            <% } %>
+                          <% } %>
                         </div>
-                      <% } %>
+                        <div class = "user_comment">
 
-                      <%= results.data[i].comments.data[j].message %>
+                          <% for(var j = 0; j < results.data[i].comments.data.length; j++) { %>
 
-                      <a class = "left reply-btn" href = "<%= results.data[i].id %>-<%= j %>">
-                        reply
-                      </a>
-                        <div class = "reply reply-<%= results.data[i].id %>-<%= j %> hidden" >
-                          <form class="reply-form" action = "" method = "/post">
-                            <input class="form-control" value = "<%= results.data[i].comments.data[j].id %>" type="hidden" name = "comment-id">
-                            <input class="form-control" placeholder="Reply" type="text">
-                            <button class="btn my-2 my-sm-0" type="submit"><span class = "fas fa-location-arrow"></span></button>
-                          </form>
+                            <% if(results.data[i].comments.data[j].message != null) { %>
+
+                              <p>
+                                <span class="right time">
+                                    <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] %>
+                                    :
+                                    <%= results.data[i].comments.data[j].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1] %>
+                                </span>
+                                <% if(results.data[i].comments.data[j].from != null) { %>
+                                  <span class = "bold">
+                                    <%= results.data[i].comments.data[j].from.name %>
+                                  </span>
+                                <% } %>
+                                <%= results.data[i].comments.data[j].message %>
+                              </p>
 
 
+                              <% if(results.data[i].comments.data[j].comments != null) { %>
+                                <% for(var k = 0; k < results.data[i].comments.data[j].comments.data.length; k++) { %>
+                                  <p class = "comment_reply">
+                                    <span class="bold">
+                                      <% if(results.data[i].comments.data[j].from != null) { %>
+                                        <%= results.data[i].comments.data[j].comments.data[k].from.name %>
+                                      <% } %>
+                                    </span>
+                                    <%= results.data[i].comments.data[j].comments.data[k].message %>
+                                  </p>
+                                <% } %>
+                              <% } %>
+
+                              <a class = "left reply-btn" href = "<%= results.data[i].id %>-<%= j %>">
+                                reply
+                              </a>
+
+                              <div class = "reply reply-<%= results.data[i].id %>-<%= j %> hidden" >
+                                <form class="reply-form" action = "/facebook/feed" method = "post" id = "reply-<%= results.data[i].id %>-<%= j %>">
+                                  <input type = "hidden" value = "<%= account_id %>" name = "account_id"/>
+                                  <input class="form-control" value = "<%= results.data[i].comments.data[j].id %>" type="hidden" name = "comment_id">
+                                  <input class="form-control" value = "<%= token %>" type="hidden" name = "access_token">
+                                  <input class="form-control" placeholder="Reply" type="text" name = "message">
+                                  <button id = "comment_button" type = "submit"><span class = "fas fa-location-arrow"></span></button>
+                                </form>
+                              </div>
+
+                            <% } %>
+                          <% } %>
+                        </div>
                       </div>
                     </div>
-                  <% } %>
-                <% } %>
+                  </div>
+                </div>
               </div>
-            <% } %>
+            </div>
+          <% } else { %>
+            <!-- Modal -->
+            <div class="modal fade" id="<%= results.data[i].id %>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Comments</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class = "comment-list hidden <%= results.data[i].id %>" >
+                      <div class = "message comments">
+                        <div class = "story">
+                          <% if(results.data[i].message) { %>
+                            <%= results.data[i].message %>
+                          <% } %>
+
+                          <% for(var j = 0; j < results.data[i].attachments.data.length; j++) { %>
+                            <% if(results.data[i].picture != null){ %>
+                              <% if(results.data[i].attachments.data[j] != null){ %>
+
+                                <% if(results.data[i].attachments.data[j].subattachments != null){ %>
+                                  <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                                    <div class="carousel-inner">
+                                      <div class="carousel-item active">
+                                        <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[0].media.image.src %>">
+                                      </div>
+                                      <% for(var k=1; k < results.data[i].attachments.data[j].subattachments.data.length; k++) {%>
+                                        <div class="carousel-item">
+                                          <img class="d-block w-100" src = "<%= results.data[i].attachments.data[j].subattachments.data[k].media.image.src %>">
+                                        </div>
+                                      <% } %>
+                                    </div>
+                                  </div>
+                                <% } else { %>
+                                  <% if(results.data[i].attachments.data[j].media != null) { %>
+                                  <% } %>
+                                <% } %>
+                              <% } %>
+                            <% } %>
+                          <% } %>
+                        </div>
+
+                        <a class = "left reply-btn" href = "<%= results.data[i].id %>-<%= j %>">
+                          reply
+                        </a>
+
+                        <div class = "reply reply-<%= results.data[i].id %>-<%= j %> hidden" >
+                          <form class="reply-form" action = "/facebook/feed" method = "post" id = "reply-<%= results.data[i].id %>-<%= j %>">
+                            <input type = "hidden" value = "<%= account_id %>" name = "account_id"/>
+                            <input class="form-control" value = "<%= results.data[i].id %>" type="hidden" name = "comment_id">
+                            <input class="form-control" value = "<%= token %>" type="hidden" name = "access_token">
+                            <input class="form-control" placeholder="Reply" type="text" name = "message">
+                            <button id = "comment_button" type = "submit"><span class = "fas fa-location-arrow"></span></button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% } %>
-        </div>
-
-
-
+        <% } %>
 
       </div>
     </main>
