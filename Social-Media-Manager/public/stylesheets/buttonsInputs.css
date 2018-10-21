@@ -2,7 +2,7 @@
     --selection-height: 300px;
     --selection-width: 150px;
     --color-disconnected: #999;
-    --color-text: #212529;
+    --color-text: #272727;
 }
 
 .btn{
@@ -30,28 +30,6 @@
   color: var(--color-disconnected);
 }
 
-
-
-.btn-dark{
-
-}
-
-.btn-dark:hover{
-
-}
-
-.btn-light:{
-
-}
-
-.btn-light:hover{
-
-}
-
 .btn-transparent{
-
-}
-
-.btn-transparent:hover{
-  
+  background: transparent;
 }

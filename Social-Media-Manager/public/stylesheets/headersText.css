@@ -1,128 +1,54 @@
 :root {
     --color-connected: #42b72a;
-    --color-disconnected: #999;
-    --color-text: #212529;
-    --color-facebook: #2E4471;
-    --color-instagramgrad-1: #582BD0;
-    --color-instagramgrad-2: #AA3499;
-    --color-instagramgrad-3: #DB7A7E;
-    --color-twitter: #38A8E8;
-    --color-google: #DD4D42;
-    --color-pinterest: #BD081C;
-    --color-youtube: #E62117;
-    --color-google: #EA4335;
+    --color-light: #f5f3f3;
+    --color-text: #272727;
 }
 
 body{
-  font-size: 2em;
+  font-size: 1.2em;
   font-family: 'Roboto';
-  font-weight: 200;
+  font-weight: 300;
 }
 
 .h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
     font-weight: 300;
 }
 
-.title h1{
-  font-size: 0.8em;
-  font-weight: 700;
-}
-
-.label{
-  font-weight: 500;
-}
-
-.auth{
+.welcome, .clock, .services {
   text-align: center;
 }
 
-.auth p {
-  font-size: 0.5em;
+.welcome{
+  letter-spacing: 35px;
+  font-size: 450%
+}
+.clock {
+  font-weight: lighter;
+  font-size: 325%;
 }
 
-a, a:hover ,a:visited {
+.menu a{
+  text-align: center;
   text-decoration: none;
+  font-size: 1em;
+}
+
+.text-dark{
   color: var(--color-text);
 }
 
-.option_bar a{
-  font-size: 0.5em;
+.column h1{
+  font-weight: 100;
+  text-align: center;
+}
+
+.column .subtitle{
   font-weight: 300;
+  text-align: center;
 }
 
-.dropdown{
-  font-size: 0.6em;
-  transition: 2s;
-}
-
-.option:hover > .logo{
-  transform: translate3d(0, -20px, 0);
-  text-shadow: 1px 20px 5px var(--color-shadow);
-}
-
-.dropdown:hover{
-  font-size: 0.6em;
-  text-decoration: none;
-}
-
-.disconnected ,.disconnected:hover,.disconnected:visited{
-  text-decoration: none;
-}
-
-.welcome .content-wrap .appear-text li{
-  font-size: 3em;
-  color: var(--color-text);
-}
-
-.font-dark{
-  color: var(--color-text);
-}
-
-.font-light{
+.fbpage a{
+  text-align: center;
+  margin: auto;
   color: white;
-}
-
-.font-grey a{
-  font-size: 0.8em;
-  color: var(--color-disconnected);
-}
-
-.col-md-4 p{
-  font-size: 0.7em;
-}
-
-.col-md-4 .logo{
-  font-size: 2.5em;
-  color: white;
-}
-
-.message{
-  font-size: 0.6em;
-}
-
-.story{
-  font-weight: bold;
-}
-
-.right{
-  text-align: right;
-  font-size: 0.5em;
-}
-
-.message .right a{
-  text-align: left;
-}
-
-a.left{
-  text-align: left;
-  font-size: 0.5em;
-  color: var(--color-disconnected);
-}
-
-.btn{
-  color: white;
-}
-
-.bold{
-  font-weight: bold;
 }

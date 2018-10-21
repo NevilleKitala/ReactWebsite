@@ -19,7 +19,20 @@
 
   </head>
 
-  <body>
+  <body onload="startTime()">
+
+    <!--
+     ==========================================================================================================================================
+     Javascripts
+     ==========================================================================================================================================
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="javascripts/animation.js"></script>
+    <script src="javascripts/functionality.js"></script>
 
     <!--
      ==========================================================================================================================================
@@ -38,47 +51,22 @@
 
       <!--
        ==========================================================================================================================================
-       main side menu
-       ==========================================================================================================================================
-      -->
-      <div class = "main menu side font-dark">
-
-        <div class = " option-bar title hidden">
-          <h1>
-            TAMPA
-          </h1>
-        </div>
-
-        <div class="option_bar hidden font-dark">
-
-          <a class="option" href = "/home"> SERVICES </a>
-
-          <a class="option" href = "#"> REPORTS </a>
-
-          <a class="option" href = "#"> QUEUE </a>
-
-        </div>
-
-      </div>
-
-      <!--
-       ==========================================================================================================================================
        User Name
        ==========================================================================================================================================
       -->
 
-      <div class="username">
-       <h5><%= user.local.name %></h5>
-       <nav class="my-2 my-md-0 mr-md-3">
-           <a class="my-0 mr-md-auto text-dark dropdown" data-toggle="dropdown" href="#"><span class="fa fa-cog"></span >
-           </a>
-             <div class="dropdown-menu text-dark">
-               <a class="p-2 logout links" href="/logout" onclick="clearCookies();"><span class="fa fa-unlock"></span> Log out</a>
-             </div>
-       </nav>
-      </div>
+
 
       <div class = "main content">
+
+        <!--
+         ==========================================================================================================================================
+         Dashboard Clock
+         ==========================================================================================================================================
+        -->
+
+        <div class = "clock container content-hidden" id="clock">
+        </div>
 
         <!--
          ==========================================================================================================================================
@@ -86,16 +74,12 @@
          ==========================================================================================================================================
         -->
 
-        <div class = "welcome content-hidden" id = "welcome">
+        <div class = "welcome container content-hidden" id = "welcome">
           <div class = "content-wrap">
             <ul class = "appear-text">
-              <li>H</li>
-              <li>e</li>
-              <li>y</li>
-              <li> </li>
-              <% for(var i=0; i < (user.local.name.split(" ", 1)[0]).length; i++) { %>
-               <li><%= (user.local.name.split(" ", 1))[0].charAt(i); %></li>
-            <% } %>
+              <p>
+                Hey <%= (user.facebook.name.split(" ", 1))[0] %>
+              </p>
             </ul>
           </div>
         </div>
@@ -106,122 +90,155 @@
          ==========================================================================================================================================
         -->
 
-        <div class = "content_section hidden container">
-
-          <!--
-           ==========================================================================================================================================
-           section label
-           ==========================================================================================================================================
-          -->
-          <h2 class = "label hidden ">
-            SERVICES
-          </h2>
-
-        <!-- Example row of columns -->
+        <div class = "services container">
           <div class = "row">
-            <div class = "col-md-4 long big">
+            <div class = "col-md-4 content-hidden">
               <div class = "content_item facebook">
-                <p class="logo fab fa-facebook-f "></p>
 
                 <% if(user.facebook.id){ %>
-                  <a class="fas fa-play" href = "/facebook/accounts"></a>
+                  <form method="POST" id = "facebook">
+                    <input type = "hidden" id = "facebook-active" value = "true" />
+                    <input type = "hidden" id = "facebook-id" value = "<%= fbid %>" />
+                    <input type = "hidden" id = "facebook-token" value = "<%= fbtoken %>" />
+                    <button type = "submit" class="logo fab fa-facebook-f btn-transparent"></button>
+                  </form>
+
                 <% }else{ %>
-                  <a class="fas fa-plus" href = "/auth/facebook"></a>
+                  <a class=" logo fab fa-facebook-f" id = "fboption" href = "/auth/facebook"></a>
                   <% } %>
 
               </div>
-              <p class="font-light connect"> Connect to facebook</p>
             </div>
 
-            <div class = "long clear">
-              <div class = "row">
+            <div class = "col-md-4 content-hidden">
+              <div class = "content_item twitter">
 
-              <div class = "col-md-4">
-                <div class = "content_item twitter">
-                  <p class="logo fab fa-twitter " ></p>
+                <% if(user.twitter.id){ %>
+                  <a class="logo fab fa-twitter" href = "/twitter/accounts"></a>
+                <% }else{ %>
+                  <a class="logo fab fa-twitter" href = "/auth/twitter"></a>
+                  <% } %>
+              </div>
+            </div>
 
-                  <% if(user.twitter.id){ %>
-                    <a class="fas fa-play" href = "/twitter/accounts"></a>
-                  <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/twitter"></a>
-                    <% } %>
+            <div class = "col-md-4 content-hidden">
+              <div class = "content_item google">
+
+                <% if(user.google.id){ %>
+                  <a class="logo fab fa-google" href = "/google/accounts"></a>
+                <% }else{ %>
+                  <a class="logo fab fa-google" href = "/auth/google"></a>
+                  <% } %>
+              </div>
+            </div>
+          </div>
+          <div class = "row">
+
+            <div class = "col-md-4 content-hidden">
+              <div class = "content_item instagram">
+
+                <% if(user.instagram.id){ %>
+                  <a class="logo fab fa-instagram" href = "/instagram_feed"></a>
+                <% }else{ %>
+                  <a class="logo fab fa-instagram" href = "/auth/instagram"></a>
+                <% } %>
+              </div>
+            </div>
+
+            <div class = "col-md-4 content-hidden">
+              <div class = "content_item pinterest">
+
+                <% if(user.pinterest.id){ %>
+                  <a class="logo fab fa-pinterest" href = "/pinterest/accounts"></a>
+                <% }else{ %>
+                  <a class="logo fab fa-pinterest" href = "/auth/pinterest"></a>
+                  <% } %>
                 </div>
               </div>
 
-              <div class = "col-md-4">
-                <div class = "content_item google">
-                  <p class="logo fab fa-google" ></p>
-
-                  <% if(user.google.id){ %>
-                    <a class="fas fa-play" href = "/google/accounts"></a>
-                  <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/google"></a>
-                    <% } %>
-                </div>
-              </div>
-
-            </div>
-
-            <div class = "row">
-
-              <div class = "col-md-4">
-                <div class = "content_item instagram">
-                  <p class="logo fab fa-instagram" ></p>
+              <div class = "col-md-4 content-hidden">
+                <div class = "content_item youtube">
 
                   <% if(user.instagram.id){ %>
-                    <a class="fas fa-play" href = "/instagram_feed"></a>
+                    <a class="logo fab fa-youtube" href = "/youtube/accounts"></a>
                   <% }else{ %>
-                    <a class="fas fa-plus" href = "/auth/instagram"></a>
+                    <a class="logo fab fa-youtube" href = "/auth/youtube"></a>
                     <% } %>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class = "col-md-4">
-            <div class = "content_item pinterest">
-              <p class="logo fab fa-pinterest" ></p>
+        <!--
+         ==========================================================================================================================================
+         Workspace Area
+         ==========================================================================================================================================
+        -->
 
-              <% if(user.pinterest.id){ %>
-                <a class="fas fa-play" href = "/pinterest/accounts"></a>
-              <% }else{ %>
-                <a class="fas fa-plus" href = "/auth/pinterest"></a>
-                <% } %>
+        <div class = "workspace content-hidden" id = "workspace">
+
+          <div class = "column">
+            <div class = "title">
+              <h1>facebook</h1>
             </div>
-          </div>
-
-          <div class = "col-md-4">
-            <div class = "content_item youtube">
-              <p class="logo fab fa-youtube" ></p>
-
-              <% if(user.instagram.id){ %>
-                <a class="fas fa-play" href = "/youtube/accounts"></a>
-              <% }else{ %>
-                <a class="fas fa-plus" href = "/auth/youtube"></a>
+            <div class = "selectPage">
+              <p class = "subtitle">
+                Select a page
+              </p>
+              <div class = "fbPages" id = "fbpages">
+                <% for(var i = 0; i < results.data.length; i++ ) { %>
+                  <button class = 'page' id = 'pagebtn' value = '<%= results.data[i].id %>'>
+                    <h3 style = 'color: white;'><%= results.data[i].name %></h3>
+                  </button>
                 <% } %>
+              </div>
             </div>
+
+            <div class = 'feed content-hidden' id = 'feed'>
+              <div class = "feedcontent" id = "feedcontent">
+
+              </div>
+            </div>
+
+            <div class = "optionbar content-hidden">
+
+            </div>
+
           </div>
+
+          <div class = "column">
+            <div class = "title">
+              <h1>Choose a Service</h1>
+            </div>
+            <div class = "selection">
+              <a class = "fb" href = "">facebook</a>
+              <a class = "insta  insta" href = "">instagram</a>
+              <a class = "twtr " href = "">twitter</a>
+              <a class = "yt " href = "">youtube</a>
+              <a class = "g " href = "">gmail</a>
+              <a class = "pin " href = "">pinterest</a>
+            </div>
+
+          </div>
+
+          </div>
+
+        </div>
+        <!--
+         ==========================================================================================================================================
+         Bottom menu
+         ==========================================================================================================================================
+        -->
+
+        <div class="bottom menu">
+           <a class="username text-dark" data-toggle="dropdown" href="#"> <%= user.local.name %>
+           </a>
+           <a class="links logout text-dark" href="/logout" onclick="clearCookies();"> Log out</a>
         </div>
 
       </div>
 
-      </div>
-
     </main>
-
-    <!--
-     ==========================================================================================================================================
-     Javascripts
-     ==========================================================================================================================================
-    -->
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script src="javascripts/animation.js"></script>
-    <script src="javascripts/functionality.js"></script>
-
   </body>
 
   <!--

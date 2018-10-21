@@ -2,8 +2,15 @@
 var nodeMailer = require("nodemailer");
 var ejs = require("ejs");
 var fs = require("fs");
+var request = require('request-promise');
+var configAuth = require('../config/auth');
 
 module.exports = function(app, passport) {
+
+  const userFieldSet = 'name, link, picture, created_time, message, story, id';
+  const pageFieldSet = 'name, message, story, comments{comments{attachments,from,id,message,created_time},from,id,message,created_time}, category, link, picture, is_verified, attachments, created_time';
+
+  var results;
 
     // =====================================
     // HOME PAGE (with login links) ========
@@ -56,12 +63,29 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home', isLoggedIn, function(req, res) {
-        res.render('home.ejs', {
-            user : req.user
-            // get the user out of session and pass to template
-        });
 
+      const options = {
+        method: 'GET',
+        uri: `https://graph.facebook.com/v2.8/${req.user.facebook.id}/accounts`,
+        qs: {
+            access_token: req.user.facebook.token
+        }
+      };
+
+      request(options)
+      .then(fbRes => {
+        res.render('home.ejs', {
+            results: JSON.parse(fbRes),
+            user : req.user,
+            fbtoken: req.user.facebook.token,
+            fbid: req.user.facebook.id
+             // get the user out of session and pass to template
+        });
+        console.log(JSON.parse(fbRes));
+      })
+        
         current = 1;
+
     });
 
     app.get('/email', isLoggedIn,function(req, res) {

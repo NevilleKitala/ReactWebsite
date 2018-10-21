@@ -253,7 +253,7 @@
                               </a>
 
                               <div class = "reply reply-<%= results.data[i].id %>-<%= j %> hidden" >
-                                <form class="reply-form" action = "/facebook/feed" method = "post" id = "reply-<%= results.data[i].id %>-<%= j %>">
+                                <form class="reply-form" action = "/facebook/feed" method = "post" id = "reply-<%= results.data[i].id %>-<%= j %>" value = "reply-<%= results.data[i].id %>-<%= j %>">
                                   <input type = "hidden" value = "<%= account_id %>" name = "account_id"/>
                                   <input class="form-control" value = "<%= results.data[i].comments.data[j].id %>" type="hidden" name = "comment_id">
                                   <input class="form-control" value = "<%= token %>" type="hidden" name = "access_token">
