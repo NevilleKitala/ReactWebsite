@@ -14,6 +14,10 @@ body {
   overflow: hidden;
 }
 
+::-webkit-scrollbar {display:none;}
+::-ms-scrollbar {display:none;}
+::-moz-scrollbar {display:none;}
+
 .menu{
   position: absolute;
   padding: 20px;

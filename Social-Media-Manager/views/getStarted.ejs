@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- fonts for the page -->
+    <link href='https://fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/general.css">
+    <!-- Styling all buttons and input boxes used on the page-->
+    <link rel="stylesheet" href="stylesheets/buttonsinputs.css">
+    <!-- Styling all headers and text used on the page-->
+    <link rel="stylesheet" href="stylesheets/headerstext.css">
+    <!-- Styling all cards and containers used on the page-->
+    <link rel="stylesheet" href="stylesheets/dashboardSpecs.css">
+
+  </head>
+
+  <body>
+
+    <!--
+     ==========================================================================================================================================
+     Javascripts
+     ==========================================================================================================================================
+    -->
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+    <script src="javascripts/animation.js"></script>
+    <script src="javascripts/functionality.js"></script>
+
+    <!--
+     ==========================================================================================================================================
+     Title
+     ==========================================================================================================================================
+    -->
+
+
+    <!--
+     ==========================================================================================================================================
+     Selection Main Page Menu
+     ==========================================================================================================================================
+    -->
+
+    <main class = "dashboard" id = "wrap">
+
+      <!--
+       ==========================================================================================================================================
+       User Name
+       ==========================================================================================================================================
+      -->
+
+
+
+      <div class = "main content">
+
+        <!--
+         ==========================================================================================================================================
+         Dashboard Clock
+         ==========================================================================================================================================
+        -->
+
+        <div class = "clock container content-hidden" id="clock">
+        </div>
+
+        <!--
+         ==========================================================================================================================================
+         Welcome section
+         ==========================================================================================================================================
+        -->
+
+        <div class = "welcome container content-hidden" id = "welcome">
+          <div class = "content-wrap">
+            <ul class = "fade-in content-hidden">
+              <p>
+                Get Started
+              </p>
+              <a class="begin-btn fade-in content-hidden" id = "start" href = "/auth/facebook">Connect to your facebook Account</a>
+
+            </ul>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </main>
+  </body>
+
+  <!--
+   ==========================================================================================================================================
+   Welcome Screen
+   ==========================================================================================================================================
+  -->
+
+
+
+</html>

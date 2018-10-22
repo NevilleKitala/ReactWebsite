@@ -102,6 +102,10 @@ $(document).ready(function() {
        console.log(response);
      });
    }
+   //get started pages
+   $('#start').click(function(e){
+    window.location.href = this.href;
+   });
 
    //function to get the feed linked to the facebook account
 

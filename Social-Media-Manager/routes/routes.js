@@ -18,7 +18,7 @@ module.exports = function(app, passport) {
 
     // process the signup form
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect : '/home', // redirect to the secure profile section
+        successRedirect : '/getStarted', // redirect to the secure profile section
         failureRedirect : '/register', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
@@ -34,7 +34,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home#_=_', function(req, res) {
-        res.redirect('/home'); // load the index.ejs file
+        res.redirect('/'); // load the index.ejs file
     });
 
 
@@ -83,13 +83,15 @@ module.exports = function(app, passport) {
         });
         console.log(JSON.parse(fbRes));
       })
-        
+
         current = 1;
 
     });
 
-    app.get('/email', isLoggedIn,function(req, res) {
-        res.render('emailsender.ejs'); // load the index.ejs file
+    app.get('/getStarted', isLoggedIn,function(req, res) {
+        res.render('getStarted.ejs', {
+          user : req.user
+        }); // load the index.ejs file
     });
 
     // =====================================

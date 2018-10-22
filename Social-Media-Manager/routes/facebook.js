@@ -12,28 +12,6 @@ module.exports = function(app, passport) {
 
   var results;
 
-//Get user Feed
-  app.get('/facebook/accounts', isLoggedIn, (req, res) => {
-
-  const options = {
-    method: 'GET',
-    uri: `https://graph.facebook.com/v2.8/${req.user.facebook.id}/accounts`,
-    qs: {
-        access_token: req.user.facebook.token
-    }
-  };
-
-  request(options)
-  .then(fbRes => {
-    res.render('fbAccounts.ejs', {
-        results: JSON.parse(fbRes),
-        user : req.user
-         // get the user out of session and pass to template
-    });
-    console.log(JSON.parse(fbRes));
-  })
-});
-
 app.post('/facebook/feed', isLoggedIn, (req, res) => {
 
     if(req.body.message != null){

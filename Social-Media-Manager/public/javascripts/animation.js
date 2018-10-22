@@ -5,9 +5,15 @@ $(function(){
   var welcome = $('.welcome');
   var clock = $('.clock');
   var col = $('.col-md-4');
-  var register = "https://localhost:3000/register";
+  var home = "https://localhost:3000/home";
+  var homeRedirected = "https://localhost:3000/home#_=_";
+  var started = "https://localhost:3000/getStarted";
+  var fade = $('.fade-in');
 
-  if (location.href != register ){
+  if (location.href == started ){
+    fade.removeClass('content-hidden');
+  }
+  if (location.href == home || location.href == homeRedirected){
     function SplashScreenIntro() {
       setTimeout(function(){
         welcome.removeClass('content-hidden');
@@ -44,4 +50,5 @@ $(function(){
 
     SplashScreenIntro();
   }
+
 });

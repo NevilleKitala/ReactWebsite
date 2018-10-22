@@ -28,13 +28,23 @@
   display: inline-block;
   margin-right: 30px;
   opacity: 1;
-  transition: all 3s ease-in-out;
-  transition-delay: 1s;
+  transition: all 2s ease-in-out;
+  transition-delay: 0.5s;
 }
 
 
 .welcome.content-hidden .content-wrap .appear-text p{
   transform: translate3d(0, 250px, 0);
+}
+
+.fade-in{
+  opacity: 1;
+  transition: all 1s ease-in-out;
+}
+
+.content-hidden.fade-in{
+  opacity: 0;
+  transition: all 1s ease-in-out;
 }
 
 /*
@@ -48,8 +58,8 @@
   top: 22.5%;
 }
 .clock{
-  transition: all 2s ease-in-out;
-  transition-delay: 3s;
+  transition: all 0.5s ease-in-out;
+  transition-delay: 2s;
   opacity: 1;
 }
 
