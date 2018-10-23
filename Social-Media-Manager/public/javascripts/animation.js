@@ -48,6 +48,9 @@ $(function(){
       return false;
     });
 
+    $('.fb').click(function(){
+      $('#fb-btn').addClass("content-hidden");
+    })
     SplashScreenIntro();
   }
 

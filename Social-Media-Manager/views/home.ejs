@@ -31,7 +31,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
-    <script type="text/javascript" src="script/jquery.jscrollpane.min.js"></script>
     <script src="javascripts/animation.js"></script>
     <script src="javascripts/functionality.js"></script>
 
@@ -101,7 +100,7 @@
                     <input type = "hidden" id = "facebook-active" value = "true" />
                     <input type = "hidden" id = "facebook-id" value = "<%= fbid %>" />
                     <input type = "hidden" id = "facebook-token" value = "<%= fbtoken %>" />
-                    <button type = "submit" class="logo fab fa-facebook-f btn-transparent"></button>
+                    <button type = "submit" class="logo fb fab fa-facebook-f btn-transparent"></button>
                   </form>
 
                 <% }else{ %>
@@ -195,7 +194,19 @@
               </div>
             </div>
 
-            <div class = 'feed content-hidden' id = 'feed'>
+            <div class = 'feed section content-hidden' id = 'feed'>
+              <div class = "feedcontent" id = "feedcontent">
+
+              </div>
+            </div>
+
+            <div class = 'messages section content-hidden' id = 'feed'>
+              <div class = "feedcontent" id = "feedcontent">
+
+              </div>
+            </div>
+
+            <div class = 'section content-hidden' id = 'feed'>
               <div class = "feedcontent" id = "feedcontent">
 
               </div>
@@ -212,7 +223,7 @@
               <h1>Choose a Service</h1>
             </div>
             <div class = "selection">
-              <a class = "fb" href = "">facebook</a>
+              <a class = "fb" href = "" id = 'fb-btn'>facebook</a>
               <a class = "insta  insta" href = "">instagram</a>
               <a class = "twtr " href = "">twitter</a>
               <a class = "yt " href = "">youtube</a>

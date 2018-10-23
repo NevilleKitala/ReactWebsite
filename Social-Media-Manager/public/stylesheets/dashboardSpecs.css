@@ -184,6 +184,15 @@
   opacity: 1;
 }
 
+.selection a.content-hidden{
+  opacity: 0;
+  height: 0;
+  margin: 0;
+  padding: 0;
+  top: -50px;
+  position: absolute;
+}
+
 .selection a:hover{
   text-decoration: none;
   color: var(--color-highlighted);
@@ -255,6 +264,10 @@
   facebook feed
 */
 
+.section{
+  opacity: 1;
+}
+
 .feed{
   opacity: 1;
   transition: all 1s ease;
@@ -270,7 +283,7 @@
   padding: 10px;
 }
 
-.feed.content-hidden{
+.section.content-hidden{
   opacity:0;
   transition: all 1s ease;
 }
