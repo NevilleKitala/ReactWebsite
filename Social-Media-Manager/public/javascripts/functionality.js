@@ -86,7 +86,23 @@ $(document).ready(function() {
      });
    }
 
-  function getPages(){
+  function getMessages(pageid,token){
+    var fields = 'message_count,unread_count,updated_time,messages{message,from,created_time,sticker,attachments{file_url},id}';
+
+    console.log(token);
+
+    FB.api('/' + pageid + '/conversations?access_token='+ token +'&fields=' + fields + '' , response => {
+      if(response.data) {
+
+      }else{
+        alert("error");
+      }
+
+      console.log(response);
+    });
+  }
+
+   function getPages(){
     FB.api('me/accounts?access_token='+accessToken+'&fields=id,name', response => {
       $('.fb').addClass("content-hidden");
       if(response.data) {
@@ -101,7 +117,8 @@ $(document).ready(function() {
 
        console.log(response);
      });
-   }
+  }
+
    //get started pages
    $('#start').click(function(e){
     window.location.href = this.href;
@@ -111,6 +128,7 @@ $(document).ready(function() {
 
     $('.page').click(function(e){
      getFeed(this.value);
+     getMessages(this.value, this.name);
     });
 
     $('#fboption').click(function(e){

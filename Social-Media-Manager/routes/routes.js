@@ -143,7 +143,7 @@ module.exports = function(app, passport) {
     // =====================================
     // route for facebook authentication and login
     app.get('/auth/facebook', passport.authenticate('facebook', {
-    scope: ['public_profile', 'manage_pages', 'publish_pages', 'read_page_mailboxes', 'pages_show_list'],
+    scope: ['public_profile', 'manage_pages', 'publish_pages', 'read_page_mailboxes', 'pages_show_list', 'pages_messaging'],
     display: 'popup'
     }));
 
