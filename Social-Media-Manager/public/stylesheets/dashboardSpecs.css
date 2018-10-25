@@ -2,7 +2,7 @@
     --color-light: #E2E2E2;
     --color-text: #272727;
     --color-column: #222222;
-
+    --color-preview: #6c757d;
     --color-highlighted: #5C9AF6;
     --color-facebook: #3B5998;
 }
@@ -155,7 +155,16 @@
   padding: 10px 30px;
   float: left;
   overflow: hidden;
-  transition: all 1s ease;
+  transition: all 1s ease-in-out;
+}
+
+.column.content-hidden{
+  opacity:0;
+  width:0;
+  overflow:hidden;
+  transition: ease-in-out 1s;
+  position: absolute;
+  top: -2000px;
 }
 
 .column:hover{
@@ -169,6 +178,11 @@
   padding: 5px 20px;
   border: 2px solid var(--color-light);
   border-radius: 50px;
+}
+
+.close:hover{
+  color: var(--color-highlighted);
+  cursor: pointer;
 }
 
 .selection a{
@@ -277,7 +291,6 @@
   margin-top: 20px;
   overflow-x: hidden;
   overflow-y: scroll;
-  border-top: solid 0.5px var(--color-light);
   border-bottom: solid 0.5px var(--color-light);
   height: 625px;
   padding: 10px;
@@ -304,15 +317,40 @@
 .optionbar li{
   display: inline;
   list-style: none;
-  padding-right: 39.5px;
+  margin-right: 65px;
   opacity: 1;
   width: fit-content;
   height: fit-content;
 }
 
-.optionbar img{
-  height: 50px;
-  width: 50px;
-  padding: 10px;
-  transition: 1s all ease-in-out;
+/*
+  messages
+  */
+
+.messages{
+  padding: 10px 5px;
+  border-bottom: solid 0.5px var(--color-light);
+  border-top: solid 0.5px var(--color-light);
+}
+
+.messagename, .messagepre{
+  padding: 0;
+  margin:0;
+}
+
+.messagecount{
+  float: right;
+  font-size: 0.75em;
+  color: white;
+  background: var(--color-highlighted);
+  padding: 5px 11.5px;
+  border-radius: 50px;
+}
+
+/*
+instagram selection*/
+.insta-img{
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 20px;
 }

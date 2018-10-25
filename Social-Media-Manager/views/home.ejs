@@ -177,9 +177,17 @@
 
         <div class = "workspace content-hidden" id = "workspace">
 
-          <div class = "column">
+          <div class = "fb column content-hidden">
+            <a class="close fas fa-times-circle" style="
+              float: right;
+              color: var(--color-light);
+              font-size: 1.25em;
+              " href = "">
+            </a>
             <div class = "title">
-              <h1>facebook</h1>
+              <h1>
+                facebook
+              </h1>
             </div>
             <div class = "selectPage">
               <p class = "subtitle">
@@ -194,17 +202,53 @@
               </div>
             </div>
 
-            <div class = 'feed section content-hidden' id = 'feed'>
-              <div class = "feedcontent" id = "feedcontent">
+            <div class = 'fb feed section content-hidden' id = 'feed'>
+              <div class = "fb feedcontent" id = "fbfeedcontent">
 
+              </div>
+            </div>
+
+            <div class = "fb optionbar content-hidden">
+              <ul>
+                <li><a id = "fbmessagebtn" class = "messagebtn" href= ""><span class = "fab fa-facebook-messenger"></span></a></li>
+                <li><a id = "fbfeedbtn" class = "feedbtn" href = ""><span class = "fas fa-plus-square"></span></a></li>
+              </ul>
+            </div>
+
+          </div>
+
+          <div class = "insta column content-hidden">
+            <a class="close fas fa-times-circle" style="
+              float: right;
+              color: var(--color-light);
+              font-size: 0.75em;
+              " href = " ">
+            </a>
+            <div class = "title">
+              <h1>
+                instagram
+              </h1>
+            </div>
+            <div class = 'insta feed section' id = 'feed'>
+              <div class = "insta feedcontent" id = "feedcontent">
+                <div class = "instacont">
+                  <% for(var i=0; i < instagram.length; i++) {%>
+                    <p class = 'messagename' style = "padding-left: 10px;">
+                      <%= instagram[i].user.username %>
+                    </p>
+                    <p class = 'messagepre' style = "padding-left: 10px;">
+                      <%= instagram[i].location.name %>
+                    </p>
+                    <img class = "insta-img" src="<%= instagram[i].images.standard_resolution.url %>">
+                  <% }; %>
+                </div>
               </div>
             </div>
 
             <div class = "optionbar content-hidden">
               <ul>
-                <li><a class = "feed-butn" href = ""><img src = "images/messenger.png"></a></li>
-                <li><a class = "feed-butn" href = ""><img src = "images/feed.png"></a></li>
-                <li><a class = "feed-butn" href = ""><img src = "images/feed.png"></a></li>
+                <li><a id = "messagebtn" class = "messagebtn" href= ""><span class = "fab fa-facebook-messenger"></span></a></li>
+                <li><a id = "feedbtn" class = "feedbtn" href = ""><span class = "fas fa-plus-square"></span></a></li>
               </ul>
             </div>
 

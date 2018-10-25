@@ -12,12 +12,21 @@ $(document).ready(function() {
     var accessToken =document.getElementById("facebook-token").value;
 
     //function to get the pages linked to the facebook account
-  function getFeed(pageid){
-    var fields = 'name, message, story, comments{comments{attachments,from,id,message,created_time},from,id,message,created_time},attachments, created_time';
+  function getFeed(pageid, token){
+    var fields = 'from, name, message, story, comments{comments{attachments,from,id,message,created_time},from,id,message,created_time},attachments, created_time';
 
     FB.api('/' + pageid + '/feed?access_token='+accessToken+'&fields=' + fields + '' , response => {
 
       if(response.data) {
+
+        document.getElementById('fbfeedcontent').innerHTML = "";
+        document.getElementById('fbfeedcontent').innerHTML = "<p class = 'subtitle'>Feed</p>";
+
+        document.getElementById('fbmessagebtn').name = token;
+        document.getElementById('fbmessagebtn').value = pageid;
+        document.getElementById('fbfeedbtn').name = token;
+        document.getElementById('fbfeedbtn').value = pageid;
+
         $('.selectPage').addClass("content-hidden");
         $('.optionbar').removeClass("content-hidden");
         $('.feed').removeClass("content-hidden");
@@ -38,7 +47,7 @@ $(document).ready(function() {
             for(var i = 0; i < item.attachments.data.length; i++){
 
               if(item.attachments.data[i].subattachments){
-                document.getElementById('feedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h2 style = 'font-size: 0.95em;'>" +
+                document.getElementById('fbfeedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h3 class = 'postfrom'>" + item.from.name + "</h3><h2 style = 'font-size: 0.95em;'>" +
                 (item.message.split("#", 1))[0] +
                 "</h2><h5 style = 'font-size: 0.75em; color: var(--color-highlighted);'>" + message
                  + "</h5></div><div class = 'postimage' id = 'image'></div><div class = 'time'><p style = 'color: var(--color-light);font-size:0.75em;text-align:left;'>" + date
@@ -59,7 +68,7 @@ $(document).ready(function() {
                 }
               }
               else{
-                document.getElementById('feedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h2 style = 'font-size: 0.95em;'>" +
+                document.getElementById('fbfeedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h3 class = 'postfrom'>" + item.from.name + "</h3><h2 style = 'font-size: 0.95em;'>" +
                 (item.message.split("#", 1))[0] +
                 "</h2><h5 style = 'font-size: 0.75em; color: var(--color-highlighted);'>" + message
                  + "</h5></div><div class = 'postimage' id = 'image'></div><div class = 'time'><p style = 'color: var(--color-light);font-size:0.75em;text-align:left;'>" + date
@@ -71,7 +80,7 @@ $(document).ready(function() {
             }
           }
           else{
-          document.getElementById('feedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h2 style = 'font-size: 0.95em;'>" +
+          document.getElementById('fbfeedcontent').innerHTML += "<div class = 'post'><div class  = 'story'><h3 class = 'postfrom'>" + item.from.name + "</h3><h2 style = 'font-size: 0.95em;'>" +
           (item.message.split("#", 1))[0] +
           "</h2><h5 style = 'font-size: 0.75em; color: var(--color-highlighted);'>" + message
            + "</h5></div><div class = 'postimage' id = 'image'></div><div class = 'time'><p style = 'color: var(--color-light);font-size:0.75em;text-align:left;'>" + date
@@ -81,28 +90,49 @@ $(document).ready(function() {
       } else {
           alert("Error!");
       }
-
-       console.log(response);
+      var t = setTimeout(getFeed(pageid, token), 10000);
+      console.log(response);
      });
    }
 
   function getMessages(pageid,token){
+    document.getElementById('fbfeedcontent').innerHTML = "";
+    document.getElementById('fbfeedcontent').innerHTML = "<p class = 'subtitle'>Messages</p>";
+
     var fields = 'message_count,unread_count,updated_time,messages{message,from,created_time,sticker,attachments{file_url},id}';
 
     console.log(token);
 
     FB.api('/' + pageid + '/conversations?access_token='+ token +'&fields=' + fields + '' , response => {
       if(response.data) {
+        $.each(response.data,function(index,message) {
+          var string = "";
+          var time = message.messages.data[0].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[0] +
+          ":" +
+          message.messages.data[0].created_time.replace("T", ' ').replace(/\+.+/, '').split(" ",2)[1].split(":",2)[1];
+          var date =  message.messages.data[0].created_time.split("-", 1)[0] + "/"
+          + message.messages.data[0].created_time.split("-", 2)[1] + "/"
+          + (message.messages.data[0].created_time.split("-", 3)[2]).split("T", 1)[0] + ".";
 
+          if( message.messages.data[0].message.length < 30 ){
+            string = message.messages.data[0].message;
+          }
+          else{
+            string = message.messages.data[0].message.split(message.messages.data[0].message.substring(30),1)[0] + "...";
+          }
+          document.getElementById('fbfeedcontent').innerHTML += "<div class = 'messages'><p class = 'messagename'>" + message.messages.data[0].from.name + "<span class = 'messagecount'>"
+           + message.message_count + "</span></p><p class = 'messagepre'>" + string + "</p><div class = 'time'><p style = 'color: var(--color-light);font-size:0.75em;text-align:left;'>" + date
+           + " at " + time + "</p></div></div>";
+        });
       }else{
         alert("error");
       }
-
       console.log(response);
     });
   }
 
    function getPages(){
+
     FB.api('me/accounts?access_token='+accessToken+'&fields=id,name', response => {
       $('.fb').addClass("content-hidden");
       if(response.data) {
@@ -127,12 +157,27 @@ $(document).ready(function() {
    //function to get the feed linked to the facebook account
 
     $('.page').click(function(e){
-     getFeed(this.value);
+     getFeed(this.value, this.name);
+    });
+
+    $('.feedbtn').click(function(e){
+      e.preventDefault();
+     getFeed(this.value, this.name);
+    });
+
+    $('.messagebtn').click(function(e){
+      e.preventDefault();
      getMessages(this.value, this.name);
     });
 
-    $('#fboption').click(function(e){
-     getPages();
+
+    $('#fb-btn').click(function(e){
+      e.preventDefault();
+
+      $('.selectPage').removeClass("content-hidden");
+      $('.optionbar').addClass("content-hidden");
+      $('.feed').addClass("content-hidden");
+
     });
   };
 

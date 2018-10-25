@@ -2,6 +2,8 @@
     --color-connected: #42b72a;
     --color-light: #f5f3f3;
     --color-text: #272727;
+
+    --color-preview: #6c757d;
 }
 
 body{
@@ -51,4 +53,26 @@ body{
   text-align: center;
   margin: auto;
   color: white;
+}
+
+.postfrom{
+  font-size: 0.9em;
+  font-weight: 500;
+}
+
+.optionbar li{
+  font-size: 2em;
+}
+
+.optionbar li a{
+  color: var(--color-highlighted);
+}
+
+.messagename{
+  font-weight:500;
+}
+
+.messagepre{
+  color: var(--color-preview);
+  font-size: 0.75em;
 }

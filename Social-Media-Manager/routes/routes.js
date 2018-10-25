@@ -4,6 +4,7 @@ var ejs = require("ejs");
 var fs = require("fs");
 var request = require('request-promise');
 var configAuth = require('../config/auth');
+var ig = require('instagram-node').instagram();
 
 module.exports = function(app, passport) {
 
@@ -72,17 +73,45 @@ module.exports = function(app, passport) {
         }
       };
 
-      request(options)
-      .then(fbRes => {
-        res.render('home.ejs', {
-            results: JSON.parse(fbRes),
-            user : req.user,
-            fbtoken: req.user.facebook.token,
-            fbid: req.user.facebook.id
-             // get the user out of session and pass to template
-        });
-        console.log(JSON.parse(fbRes));
-      })
+      if(req.user.instagram.id){
+
+
+      ig.use({
+       access_token : req.user.instagram.token
+      });
+
+
+      ig.user_media_recent((req.user.instagram.token).split('.')[0], function(err, result, pagination, remaining, limit) {
+        if(err) res.json(err);
+           // pass the json file gotten to our ejs template
+
+           request(options)
+           .then(fbRes => {
+             res.render('home.ejs', {
+                 results: JSON.parse(fbRes),
+                 user : req.user,
+                 instagram : result,
+                 fbtoken: req.user.facebook.token,
+                 fbid: req.user.facebook.id
+                  // get the user out of session and pass to template
+             });
+             console.log(result);
+           })
+          });
+        }
+        else{
+          request(options)
+          .then(fbRes => {
+            res.render('home.ejs', {
+                results: JSON.parse(fbRes),
+                user : req.user,
+                fbtoken: req.user.facebook.token,
+                fbid: req.user.facebook.id
+                 // get the user out of session and pass to template
+            });
+            console.log(JSON.parse(fbRes));
+          })
+        }
 
         current = 1;
 

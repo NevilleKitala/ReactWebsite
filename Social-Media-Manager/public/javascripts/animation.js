@@ -45,11 +45,21 @@ $(function(){
     $('#facebook').submit(function(e){
       e.preventDefault();
       clearContent(this.href);
+      $('.fb.column').removeClass('content-hidden');
+      $('#fb-btn').addClass("content-hidden");
       return false;
     });
 
-    $('.fb').click(function(){
+    $('.close').click(function(e) {
+      e.preventDefault();
+      $(this).closest('.column').addClass('content-hidden');
+      $('#fb-btn').removeClass("content-hidden");
+    });
+
+    $('#fb-btn').click(function(e){
+      e.preventDefault();
       $('#fb-btn').addClass("content-hidden");
+      $('.fb.column').removeClass("content-hidden");
     })
     SplashScreenIntro();
   }
