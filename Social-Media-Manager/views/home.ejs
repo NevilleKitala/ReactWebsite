@@ -105,7 +105,7 @@
 
                 <% }else{ %>
                   <a class=" logo fab fa-facebook-f" id = "fboption" href = "/auth/facebook"></a>
-                  <% } %>
+                <% } %>
 
               </div>
             </div>
@@ -138,7 +138,12 @@
               <div class = "content_item instagram">
 
                 <% if(user.instagram.id){ %>
-                  <a class="logo fab fa-instagram" href = "/instagram_feed"></a>
+                  <form method="POST" id = "instagram">
+                    <input type = "hidden" id = "facebook-active" value = "true" />
+                    <input type = "hidden" id = "facebook-id" value = "<%= fbid %>" />
+                    <input type = "hidden" id = "facebook-token" value = "<%= fbtoken %>" />
+                    <button type = "submit" class="logo insta fab fa-instagram btn-transparent"></button>
+                  </form>
                 <% }else{ %>
                   <a class="logo fab fa-instagram" href = "/auth/instagram"></a>
                 <% } %>
@@ -178,7 +183,7 @@
         <div class = "workspace content-hidden" id = "workspace">
 
           <div class = "fb column content-hidden">
-            <a class="close fas fa-times-circle" style="
+            <a class="fb close fas fa-times-circle" style="
               float: right;
               color: var(--color-light);
               font-size: 1.25em;
@@ -194,10 +199,12 @@
                 Select a page
               </p>
               <div class = "fbPages" id = "fbpages">
-                <% for(var i = 0; i < results.data.length; i++ ) { %>
-                  <button class = 'page' id = 'pagebtn' value = '<%= results.data[i].id %>' name = "<%= results.data[i].access_token %>">
-                    <h3 style = 'color: white;'><%= results.data[i].name %></h3>
-                  </button>
+                <% if (instagram != null ) {%>
+                  <% for(var i = 0; i < results.data.length; i++ ) { %>
+                    <button class = 'page' id = 'pagebtn' value = '<%= results.data[i].id %>' name = "<%= results.data[i].access_token %>">
+                      <h3 style = 'color: white;'><%= results.data[i].name %></h3>
+                    </button>
+                  <% } %>
                 <% } %>
               </div>
             </div>
@@ -210,18 +217,18 @@
 
             <div class = "fb optionbar content-hidden">
               <ul>
-                <li><a id = "fbmessagebtn" class = "messagebtn" href= ""><span class = "fab fa-facebook-messenger"></span></a></li>
-                <li><a id = "fbfeedbtn" class = "feedbtn" href = ""><span class = "fas fa-plus-square"></span></a></li>
+                <li><a id = "fbmessagebtn" class = "fb messagebtn" href= ""><span class = "fab fa-facebook-messenger"></span></a></li>
+                <li><a id = "fbfeedbtn" class = "fb feedbtn" href = ""><span class = "fas fa-plus-square"></span></a></li>
               </ul>
             </div>
 
           </div>
 
           <div class = "insta column content-hidden">
-            <a class="close fas fa-times-circle" style="
+            <a class="insta close fas fa-times-circle" style="
               float: right;
               color: var(--color-light);
-              font-size: 0.75em;
+              font-size: 1.25em;
               " href = " ">
             </a>
             <div class = "title">
@@ -232,20 +239,22 @@
             <div class = 'insta feed section' id = 'feed'>
               <div class = "insta feedcontent" id = "feedcontent">
                 <div class = "instacont">
-                  <% for(var i=0; i < instagram.length; i++) {%>
-                    <p class = 'messagename' style = "padding-left: 10px;">
-                      <%= instagram[i].user.username %>
-                    </p>
-                    <p class = 'messagepre' style = "padding-left: 10px;">
-                      <%= instagram[i].location.name %>
-                    </p>
-                    <img class = "insta-img" src="<%= instagram[i].images.standard_resolution.url %>">
-                  <% }; %>
+                  <% if (instagram != null ) {%>
+                    <% for(var i=0; i < instagram.length; i++) {%>
+                      <p class = 'messagename' style = "padding-left: 10px;">
+                        <%= instagram[i].user.username %>
+                      </p>
+                      <p class = 'messagepre' style = "padding-left: 10px;">
+                        <%= instagram[i].location.name %>
+                      </p>
+                      <img class = "insta-img" src="<%= instagram[i].images.standard_resolution.url %>">
+                    <% } %>
+                  <% } %>
                 </div>
               </div>
             </div>
 
-            <div class = "optionbar content-hidden">
+            <div class = "insta optionbar">
               <ul>
                 <li><a id = "messagebtn" class = "messagebtn" href= ""><span class = "fab fa-facebook-messenger"></span></a></li>
                 <li><a id = "feedbtn" class = "feedbtn" href = ""><span class = "fas fa-plus-square"></span></a></li>
@@ -260,7 +269,7 @@
             </div>
             <div class = "selection">
               <a class = "fb" href = "" id = 'fb-btn'>facebook</a>
-              <a class = "insta  insta" href = "">instagram</a>
+              <a class = "insta" href = "" id = "insta-btn">instagram</a>
               <a class = "twtr " href = "">twitter</a>
               <a class = "yt " href = "">youtube</a>
               <a class = "g " href = "">gmail</a>

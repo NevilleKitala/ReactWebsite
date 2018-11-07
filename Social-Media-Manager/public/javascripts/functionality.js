@@ -28,8 +28,8 @@ $(document).ready(function() {
         document.getElementById('fbfeedbtn').value = pageid;
 
         $('.selectPage').addClass("content-hidden");
-        $('.optionbar').removeClass("content-hidden");
-        $('.feed').removeClass("content-hidden");
+        $('.fb.optionbar').removeClass("content-hidden");
+        $('.fb.feed').removeClass("content-hidden");
 
         $.each(response.data,function(index,item) {
           var message = [];
@@ -160,12 +160,12 @@ $(document).ready(function() {
      getFeed(this.value, this.name);
     });
 
-    $('.feedbtn').click(function(e){
+    $('.fb.feedbtn').click(function(e){
       e.preventDefault();
      getFeed(this.value, this.name);
     });
 
-    $('.messagebtn').click(function(e){
+    $('.fb.messagebtn').click(function(e){
       e.preventDefault();
      getMessages(this.value, this.name);
     });
@@ -176,9 +176,15 @@ $(document).ready(function() {
 
       $('.selectPage').removeClass("content-hidden");
       $('.optionbar').addClass("content-hidden");
-      $('.feed').addClass("content-hidden");
+      $('.fb.feed').addClass("content-hidden");
 
     });
+
+    $('#insta-btn').click(function(e){
+      e.preventDefault();
+      $('.insta.optionbar').removeClass("content-hidden");
+    });
+
   };
 
   (function(d, s, id){

@@ -35,7 +35,7 @@ module.exports = function(app, passport) {
     });
 
     app.get('/home#_=_', function(req, res) {
-        res.redirect('/'); // load the index.ejs file
+        res.redirect('/home'); // load the index.ejs file
     });
 
 
@@ -106,7 +106,8 @@ module.exports = function(app, passport) {
                 results: JSON.parse(fbRes),
                 user : req.user,
                 fbtoken: req.user.facebook.token,
-                fbid: req.user.facebook.id
+                fbid: req.user.facebook.id,
+                instagram: null
                  // get the user out of session and pass to template
             });
             console.log(JSON.parse(fbRes));

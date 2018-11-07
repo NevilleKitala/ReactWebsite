@@ -50,10 +50,26 @@ $(function(){
       return false;
     });
 
-    $('.close').click(function(e) {
+    $('#instagram').submit(function(e){
       e.preventDefault();
+      clearContent(this.href);
+      $('.insta.column').removeClass('content-hidden');
+      $('#insta-btn').addClass("content-hidden");
+      return false;
+    });
+
+    $('.fb.close').click(function(e) {
+      e.preventDefault();
+      console.log(this.href);
       $(this).closest('.column').addClass('content-hidden');
       $('#fb-btn').removeClass("content-hidden");
+    });
+
+    $('.insta.close').click(function(e) {
+      e.preventDefault();
+      console.log(this.href);
+      $(this).closest('.column').addClass('content-hidden');
+      $('#insta-btn').removeClass("content-hidden");
     });
 
     $('#fb-btn').click(function(e){
@@ -61,6 +77,13 @@ $(function(){
       $('#fb-btn').addClass("content-hidden");
       $('.fb.column').removeClass("content-hidden");
     })
+
+    $('#insta-btn').click(function(e){
+      e.preventDefault();
+      $('#insta-btn').addClass("content-hidden");
+      $('.insta.column').removeClass("content-hidden");
+    })
+
     SplashScreenIntro();
   }
 
